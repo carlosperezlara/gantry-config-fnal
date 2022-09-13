@@ -1,0 +1,135 @@
+#HOME
+SETVAC chuck_0 1
+
+SETLOG "measure_results_july_26.log"
+
+COPY $HI_SPEED 40
+
+MOVENAME ETL_baseplate_chuck_0_slot_0 $HI_SPEED
+CALL @CALC_BASEPLATE_AND_SENSOR_FIDS
+
+MOVENAME ETL_baseplate_chuck_0_slot_1 $HI_SPEED
+CALL @CALC_BASEPLATE_AND_SENSOR_FIDS
+
+SETVAC chuck_0 0
+
+MOVENAME home $HI_SPEED
+
+END
+
+@CALC_BASEPLATE_AND_SENSOR_FIDS COPY $BREAKMAIN $RET
+    PRINT "MEASURING SENSOR_ASSEMBLY"
+    FLEXREAD $fid_dx geometry.ETL_Baseplate_PCB_Mockup.fid_dx
+    FLEXREAD $fid_dy geometry.ETL_Baseplate_PCB_Mockup.fid_dy
+
+    CALL @BASEPLATE_FID_FINDER
+    COPY $baseplate_tl $baseplate_fid
+    PRINT "BASEPLATE_TL_FIDUCIAL: %v" $baseplate_tl
+
+    MOVEREL $fid_dx $HI_SPEED
+
+    CALL @BASEPLATE_FID_FINDER
+    COPY $baseplate_tr $baseplate_fid
+    PRINT "BASEPLATE_TR_FIDUCIAL: %v" $baseplate_tr
+
+    MOVEREL $fid_dy $HI_SPEED
+    CALL @BASEPLATE_FID_FINDER
+    COPY $baseplate_br $baseplate_fid
+    PRINT "BASEPLATE_BR_FIDUCIAL: %v" $baseplate_br
+
+    MUL $fid_dx -1 $fid_dx
+    MOVEREL $fid_dx $HI_SPEED
+
+    CALL @BASEPLATE_FID_FINDER
+    COPY $baseplate_bl $baseplate_fid
+    PRINT "BASEPLATE_BL_FIDUCIAL: %v" $baseplate_bl
+
+    FIT $baseplate_pos $baseplate_rot ETL_Baseplate_PCB_Mockup $baseplate_tr $baseplate_br $baseplate_bl $baseplate_tl
+    PRINT "BASEPLATE_CENTER: %v" $baseplate_pos
+    QUAT2EULER $baseplate_yaw $p $r $baseplate_rot
+    PRINT "BASEPLATE_ANGLE: %f" $baseplate_yaw
+
+    MOVETO $baseplate_tl $HI_SPEED
+    MOVEREL  {-2.795000,3.32000,-0.75000} $HI_SPEED
+    GETPOS $TOP_SENSOR_START
+    ADD $BOT_SENSOR_START $TOP_SENSOR_START {0,23.5700,0}
+
+    PRINT "MEASURING TOP SENSOR FIDUCIALS"
+    CALL @CALC_SENSOR_FIDS
+
+    MOVETO $BOT_SENSOR_START $HI_SPEED
+    PRINT "MEASURING BOTTOM SENSOR FIDUCIALS"
+    CALL @CALC_SENSOR_FIDS
+    
+
+GOTO $BREAKMAIN
+
+@BASEPLATE_FID_FINDER COPY $BREAKOUT $RET
+    # VIDEO
+    AUTOFOCUS $z 0.5 autoclose
+    SETLIGHT 40
+    SETERRORMODE setvar
+    COPY $RETRIES 3
+    @RETRY_BASEPLATE DEC $RETRIES $RETRIES
+    GOTOIFN @MANUAL_FID_BP $RETRIES
+    FINDFID $baseplate_fid ETL_Baseplate_PCB_Mockup
+    GOTOIF @RETRY_BASEPLATE $ERR
+    SETERRORMODE normal
+    GOTO $BREAKOUT
+    @MANUAL_FID_BP CHOICEPOPUP $c "Unable to locate fiducial, use camera feed and mpg to manually center the gantry on the fiducial" "continue" "continue"
+    MPGON
+    VIDEO
+    GETPOS $baseplate_fid
+    MPGOFF
+    GOTO $BREAKOUT
+
+@CALC_SENSOR_FIDS COPY $BREAK $RET
+    FLEXREAD $fid_dx geometry.ETL_Sensor_PCB_Mockup.fid_dx_measure
+    FLEXREAD $fid_dy geometry.ETL_Sensor_PCB_Mockup.fid_dy
+
+    CALL @SENSOR_FID_FINDER
+    COPY $Sensor_tl $Sensor_fid
+    PRINT "SENSOR_TL_FIDUCIAL: %v" $Sensor_tl
+
+    MOVEREL $fid_dx $HI_SPEED
+    CALL @SENSOR_FID_FINDER
+    COPY $Sensor_tr $Sensor_fid
+    PRINT "SENSOR_TR_FIDUCIAL: %v" $Sensor_tr
+    
+    MOVEREL $fid_dy $HI_SPEED
+    CALL @SENSOR_FID_FINDER
+    COPY $Sensor_br $Sensor_fid
+    PRINT "SENSOR_BR_FIDUCIAL: %v" $Sensor_br
+    
+    MUL $fid_dx -1 $fid_dx
+    MOVEREL $fid_dx $HI_SPEED
+
+    CALL @SENSOR_FID_FINDER
+    COPY $Sensor_bl $Sensor_fid
+    PRINT "SENSOR_BL_FIDUCIAL: %v" $Sensor_bl
+
+    FIT $sensor_pos $sensor_rot ETL_Sensor_PCB_Mockup $Sensor_tr $Sensor_br $Sensor_bl $Sensor_tl
+    PRINT "SENSOR_CENTER: %v" $sensor_pos
+    QUAT2EULER $sensor_yaw $p $r $sensor_rot
+    PRINT "SENSOR_ANGLE: %f" $sensor_yaw
+
+    GOTO $BREAK
+
+@SENSOR_FID_FINDER COPY $BREAKOUT $RET
+    # VIDEO
+    AUTOFOCUS $z 0.5 autoclose
+    SETLIGHT 10
+    SETERRORMODE setvar
+    COPY $RETRIES 3
+    @RETRY_SENSOR DEC $RETRIES $RETRIES
+    GOTOIFN @MANUAL_FID_SENS $RETRIES
+    FINDFID $Sensor_fid ETL_Sensor_PCB_Mockup 
+    GOTOIF @RETRY_SENSOR $ERR
+    SETERRORMODE normal
+    GOTO $BREAKOUT
+    @MANUAL_FID_SENS CHOICEPOPUP $c "Unable to locate fiducial, use camera feed and mpg to manually center the gantry on the fiducial" "continue" "continue"
+    MPGON
+    VIDEO
+    GETPOS $Sensor_fid
+    MPGOFF
+    GOTO $BREAKOUT

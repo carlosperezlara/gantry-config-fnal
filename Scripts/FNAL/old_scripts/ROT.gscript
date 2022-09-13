@@ -1,0 +1,46 @@
+copy $v1 {-0.707107,-0.707107,0}
+copy $v2 {0.707107,-0.707107,0}
+copy $v3 {-0.707107,0.707107,0}
+copy $v4 {0.707107,0.707107,0}
+
+copy $bpyaw 45
+COPY $V $v1
+PRINT %v $V
+CALL @ROT_CORRECT
+COPY $v1 $VROT
+PRINT %v $v1
+
+copy $bpyaw 45
+COPY $V $v2
+PRINT %v $V
+CALL @ROT_CORRECT
+COPY $v2 $VROT
+PRINT %v $v2
+
+copy $bpyaw 45
+COPY $V $v3
+PRINT %v $V
+CALL @ROT_CORRECT
+COPY $v3 $VROT
+PRINT %v $v3
+
+copy $bpyaw 45
+COPY $V $v4
+PRINT %v $V
+CALL @ROT_CORRECT
+COPY $v4 $VROT
+PRINT %v $v4
+
+END
+
+@ROT_CORRECT COPY $ROTCOREXIT $RET
+    COS $C $bpyaw
+    SIN $S $bpyaw
+    MUL $XM $C $V.x
+    MUL $YM $S $V.y
+    SUB $XR $XM $YM
+    MUL $XM $S $V.x
+    MUL $YM $C $V.y
+    ADD $YR $YM $XM
+    COPY $VROT {$XR,$YR,$V.z}
+    GOTO $ROTCOREXIT

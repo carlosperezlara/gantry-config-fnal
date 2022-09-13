@@ -1,0 +1,6 @@
+wait 5000
+print "HAJIME!"
+wait 300000
+setvac gantry_head_outer 1
+wait 2000
+setvac gantry_head_outer 0

@@ -1,0 +1,657 @@
+setvac baseplates_chuck 1
+
+#setvac sensor_3_chuck 1
+#setvac sensor_6_chuck 1
+#setvac sensor_4_chuck 1
+#setvac sensor_5_chuck 1
+#setvac sensor_1_chuck 1
+#setvac sensor_8_chuck 1
+#setvac sensor_7_chuck 1
+#setvac sensor_2_chuck 1
+
+WAIT 3000
+
+HOME
+SETLOG "assembly.txt"
+
+COPY $LO_SPEED 30
+COPY $HI_SPEED 50
+
+MOVENAME ETL_baseplate_chuck_1_slot_1 $HI_SPEED direct
+CALL @CALC_BASEPLATE_CENTER_ROT 1 -> $baseplate_1_pos $baseplate_1_rot
+QUAT2EULER $baseplate_1_yaw $pitch $roll $baseplate_1_rot
+PRINT "B1"
+PRINT %v $baseplate_1_pos
+PRINT %f $baseplate_1_yaw
+
+MOVENAME ETL_baseplate_chuck_1_slot_2 $HI_SPEED direct
+CALL @CALC_BASEPLATE_CENTER_ROT 2 -> $baseplate_2_pos $baseplate_2_rot
+QUAT2EULER $baseplate_2_yaw $pitch $roll $baseplate_2_rot
+PRINT "B2"
+PRINT %v $baseplate_2_pos
+PRINT %f $baseplate_2_yaw
+
+MOVENAME ETL_baseplate_chuck_1_slot_3 $HI_SPEED direct
+CALL @CALC_BASEPLATE_CENTER_ROT 3 -> $baseplate_3_pos $baseplate_3_rot
+QUAT2EULER $baseplate_3_yaw $pitch $roll $baseplate_3_rot
+PRINT "B3"
+PRINT %v $baseplate_3_pos
+PRINT %f $baseplate_3_yaw
+
+MOVENAME ETL_baseplate_chuck_1_slot_4 $HI_SPEED direct
+CALL @CALC_BASEPLATE_CENTER_ROT 4 -> $baseplate_4_pos $baseplate_4_rot
+QUAT2EULER $baseplate_4_yaw $pitch $roll $baseplate_4_rot
+PRINT "B4"
+PRINT %v $baseplate_4_pos
+PRINT %f $baseplate_4_yaw
+
+MOVENAME ETL_etroc_chuck_1_slot_1_tr $HI_SPEED direct
+CALL @CALC_ETROC_CENTER_ROT 1 1 -> $etroc_1_pos $etroc_1_rot
+QUAT2EULER $etroc_1_yaw $pitch $roll $etroc_1_rot
+PRINT "E1"
+PRINT %v $etroc_1_pos
+PRINT %f $etroc_1_yaw
+
+MOVENAME ETL_etroc_chuck_1_slot_3_tr $HI_SPEED direct
+CALL @CALC_ETROC_CENTER_ROT 3 1 -> $etroc_3_pos $etroc_3_rot
+QUAT2EULER $etroc_3_yaw $pitch $roll $etroc_3_rot
+PRINT "E3"
+PRINT %v $etroc_3_pos
+PRINT %f $etroc_3_yaw
+
+MOVENAME ETL_etroc_chuck_1_slot_5_tr $HI_SPEED direct
+CALL @CALC_ETROC_CENTER_ROT 5 1 -> $etroc_5_pos $etroc_5_rot
+QUAT2EULER $etroc_5_yaw $pitch $roll $etroc_5_rot
+PRINT "E5"
+PRINT %v $etroc_5_pos
+PRINT %f $etroc_5_yaw
+
+MOVENAME ETL_etroc_chuck_1_slot_7_tr $HI_SPEED direct
+CALL @CALC_ETROC_CENTER_ROT 7 1 -> $etroc_7_pos $etroc_7_rot
+QUAT2EULER $etroc_7_yaw $pitch $roll $etroc_7_rot
+PRINT "E7"
+PRINT %v $etroc_7_pos
+PRINT %f $etroc_7_yaw
+
+MOVENAME ETL_etroc_chuck_1_slot_8_tr $HI_SPEED direct
+CALL @CALC_ETROC_CENTER_ROT 8 -1 -> $etroc_8_pos $etroc_8_rot
+QUAT2EULER $etroc_8_yaw $pitch $roll $etroc_8_rot
+CALL @ANGLE_FIX $etroc_8_yaw -> $etroc_8_yaw
+PRINT "E8"
+PRINT %v $etroc_8_pos
+PRINT %f $etroc_8_yaw
+
+MOVENAME ETL_etroc_chuck_1_slot_6_tr $HI_SPEED direct
+CALL @CALC_ETROC_CENTER_ROT 6 -1 -> $etroc_6_pos $etroc_6_rot
+QUAT2EULER $etroc_6_yaw $pitch $roll $etroc_6_rot
+CALL @ANGLE_FIX $etroc_6_yaw -> $etroc_6_yaw
+PRINT "E6"
+PRINT %v $etroc_6_pos
+PRINT %f $etroc_6_yaw
+
+MOVENAME ETL_etroc_chuck_1_slot_4_tr $HI_SPEED direct
+CALL @CALC_ETROC_CENTER_ROT 4 -1 -> $etroc_4_pos $etroc_4_rot
+QUAT2EULER $etroc_4_yaw $pitch $roll $etroc_4_rot
+CALL @ANGLE_FIX $etroc_4_yaw -> $etroc_4_yaw
+PRINT "E4"
+PRINT %v $etroc_4_pos
+PRINT %f $etroc_4_yaw
+
+MOVENAME ETL_etroc_chuck_1_slot_2_tr $HI_SPEED direct
+CALL @CALC_ETROC_CENTER_ROT 2 -1 -> $etroc_2_pos $etroc_2_rot
+QUAT2EULER $etroc_2_yaw $pitch $roll $etroc_2_rot
+CALL @ANGLE_FIX $etroc_2_yaw -> $etroc_2_yaw
+PRINT "E2"
+PRINT %v $etroc_2_pos
+PRINT %f $etroc_2_yaw
+
+SETLIGHT 0
+LOADTOOL picker_tool
+
+# first combo onto first baseplate
+COPY $place_pos $baseplate_1_pos
+COPY $pickup_pos $etroc_1_pos
+ADD $pickup_pos $pickup_pos {0,0,0.25}
+CALL @PICKUP 1 -> $ret
+setvac sensor_1_chuck 0
+SUB $ANG $etroc_1_yaw $baseplate_1_yaw
+SUB $ANG $ANG 0.05175 # Angle systematics
+ROTATE $ANG 0.2
+CALL @PLACE {-11.739233,-10.678872,0} -> $ret
+ROTATETO 0 0.2
+
+# second combo onto first baseplate
+COPY $place_pos $baseplate_1_pos
+COPY $pickup_pos $etroc_2_pos
+ADD $pickup_pos $pickup_pos {0,0,0.25}
+copy $vachan 2
+CALL @PICKUP
+setvac sensor_2_chuck 0
+SUB $ANG $etroc_2_yaw $baseplate_1_yaw
+SUB $ANG $ANG 0.03602 # Angle systematics
+ROTATE $ANG 0.2
+CALL @PLACE {11.755528,-10.684400,0} -> $ret
+ROTATETO 0 0.2
+
+# third combo onto first baseplate
+COPY $place_pos $baseplate_1_pos
+COPY $pickup_pos $etroc_3_pos
+ADD $pickup_pos $pickup_pos {0,0,0.25}
+copy $vachan 3
+CALL @PICKUP
+setvac sensor_3_chuck 0
+SUB $ANG $etroc_3_yaw $baseplate_1_yaw
+SUB $ANG $ANG 0.05116 # Angle systematics
+ROTATE $ANG 0.2
+CALL @PLACE {-11.742928,10.710983,0} -> $ret
+ROTATETO 0 0.2
+
+# fourth combo onto first baseplate
+COPY $place_pos $baseplate_1_pos
+COPY $pickup_pos $etroc_4_pos
+ADD $pickup_pos $pickup_pos {0,0,0.45}
+copy $vachan 4
+CALL @PICKUP
+setvac sensor_4_chuck 0
+SUB $ANG $etroc_4_yaw $baseplate_1_yaw
+#SUB $ANG $ANG 0.05638 # Angle systematics
+ROTATE $ANG 0.2
+CALL @PLACE {11.75408,10.705166,0} -> $ret
+ROTATETO 0 0.2
+
+# first combo onto second baseplate
+COPY $place_pos $baseplate_2_pos
+COPY $pickup_pos $etroc_5_pos
+ADD $pickup_pos $pickup_pos {0,0,0.25}
+CALL @PICKUP 1 -> $ret
+setvac sensor_1_chuck 0
+SUB $ANG $etroc_5_yaw $baseplate_2_yaw
+SUB $ANG $ANG 0.05175 # Angle systematics
+ROTATE $ANG 0.2
+CALL @PLACE {-11.739233,-10.678872,0} -> $ret
+ROTATETO 0 0.2
+
+# second combo onto second baseplate
+COPY $place_pos $baseplate_2_pos
+COPY $pickup_pos $etroc_6_pos
+ADD $pickup_pos $pickup_pos {0,0,0.25}
+copy $vachan 2
+CALL @PICKUP
+setvac sensor_2_chuck 0
+SUB $ANG $etroc_6_yaw $baseplate_2_yaw
+SUB $ANG $ANG 0.03602 # Angle systematics
+ROTATE $ANG 0.2
+CALL @PLACE {11.755528,-10.684400,0} -> $ret
+ROTATETO 0 0.2
+
+# third combo onto second baseplate
+COPY $place_pos $baseplate_2_pos
+COPY $pickup_pos $etroc_7_pos
+ADD $pickup_pos $pickup_pos {0,0,0.25}
+copy $vachan 3
+CALL @PICKUP
+setvac sensor_3_chuck 0
+SUB $ANG $etroc_7_yaw $baseplate_2_yaw
+SUB $ANG $ANG 0.05116 # Angle systematics
+ROTATE $ANG 0.2
+CALL @PLACE {-11.742928,10.710983,0} -> $ret
+ROTATETO 0 0.2
+
+# fourth combo onto second baseplate
+COPY $place_pos $baseplate_2_pos
+COPY $pickup_pos $etroc_8_pos
+ADD $pickup_pos $pickup_pos {0,0,0.45}
+copy $vachan 4
+CALL @PICKUP
+setvac sensor_4_chuck 0
+SUB $ANG $etroc_8_yaw $baseplate_2_yaw
+#SUB $ANG $ANG 0.05638 # Angle systematics
+ROTATE $ANG 0.2
+CALL @PLACE {11.75408,10.705166,0} -> $ret
+ROTATETO 0 0.2
+
+UNLOADTOOL
+FLEXREAD $park_pos graph_motion.pos.ETL_etroc_chuck_1_slot_1_tr
+ADD $park_pos $park_pos {0,-20,0}
+MOVETO $park_pos $HI_SPEED
+CHOICEPOPUP $c "Load the next set of etrocs and click continue." "continue" "continue"
+
+MOVENAME ETL_etroc_chuck_1_slot_1_tr $HI_SPEED direct
+CALL @CALC_ETROC_CENTER_ROT 9 1 -> $etroc_1_pos $etroc_1_rot
+QUAT2EULER $etroc_1_yaw $pitch $roll $etroc_1_rot
+PRINT "E1"
+PRINT %v $etroc_1_pos
+PRINT %f $etroc_1_yaw
+
+MOVENAME ETL_etroc_chuck_1_slot_3_tr $HI_SPEED direct
+CALL @CALC_ETROC_CENTER_ROT 11 1 -> $etroc_3_pos $etroc_3_rot
+QUAT2EULER $etroc_3_yaw $pitch $roll $etroc_3_rot
+PRINT "E3"
+PRINT %v $etroc_3_pos
+PRINT %f $etroc_3_yaw
+
+MOVENAME ETL_etroc_chuck_1_slot_5_tr $HI_SPEED direct
+CALL @CALC_ETROC_CENTER_ROT 13 1 -> $etroc_5_pos $etroc_5_rot
+QUAT2EULER $etroc_5_yaw $pitch $roll $etroc_5_rot
+PRINT "E5"
+PRINT %v $etroc_5_pos
+PRINT %f $etroc_5_yaw
+
+MOVENAME ETL_etroc_chuck_1_slot_7_tr $HI_SPEED direct
+CALL @CALC_ETROC_CENTER_ROT 15 1 -> $etroc_7_pos $etroc_7_rot
+QUAT2EULER $etroc_7_yaw $pitch $roll $etroc_7_rot
+PRINT "E7"
+PRINT %v $etroc_7_pos
+PRINT %f $etroc_7_yaw
+
+MOVENAME ETL_etroc_chuck_1_slot_8_tr $HI_SPEED direct
+CALL @CALC_ETROC_CENTER_ROT 16 -1 -> $etroc_8_pos $etroc_8_rot
+QUAT2EULER $etroc_8_yaw $pitch $roll $etroc_8_rot
+CALL @ANGLE_FIX $etroc_8_yaw -> $etroc_8_yaw
+PRINT "E8"
+PRINT %v $etroc_8_pos
+PRINT %f $etroc_8_yaw
+
+MOVENAME ETL_etroc_chuck_1_slot_6_tr $HI_SPEED direct
+CALL @CALC_ETROC_CENTER_ROT 14 -1 -> $etroc_6_pos $etroc_6_rot
+QUAT2EULER $etroc_6_yaw $pitch $roll $etroc_6_rot
+CALL @ANGLE_FIX $etroc_6_yaw -> $etroc_6_yaw
+PRINT "E6"
+PRINT %v $etroc_6_pos
+PRINT %f $etroc_6_yaw
+
+MOVENAME ETL_etroc_chuck_1_slot_4_tr $HI_SPEED direct
+CALL @CALC_ETROC_CENTER_ROT 12 -1 -> $etroc_4_pos $etroc_4_rot
+QUAT2EULER $etroc_4_yaw $pitch $roll $etroc_4_rot
+CALL @ANGLE_FIX $etroc_4_yaw -> $etroc_4_yaw
+PRINT "E4"
+PRINT %v $etroc_4_pos
+PRINT %f $etroc_4_yaw
+
+MOVENAME ETL_etroc_chuck_1_slot_2_tr $HI_SPEED direct
+CALL @CALC_ETROC_CENTER_ROT 10 -1 -> $etroc_2_pos $etroc_2_rot
+QUAT2EULER $etroc_2_yaw $pitch $roll $etroc_2_rot
+CALL @ANGLE_FIX $etroc_2_yaw -> $etroc_2_yaw
+PRINT "E2"
+PRINT %v $etroc_2_pos
+PRINT %f $etroc_2_yaw
+
+SETLIGHT 0
+LOADTOOL picker_tool
+
+# first combo onto third baseplate
+COPY $place_pos $baseplate_3_pos
+COPY $pickup_pos $etroc_1_pos
+ADD $pickup_pos $pickup_pos {0,0,0.25}
+CALL @PICKUP 1 -> $ret
+setvac sensor_1_chuck 0
+SUB $ANG $etroc_1_yaw $baseplate_3_yaw
+SUB $ANG $ANG 0.05175 # Angle systematics
+ROTATE $ANG 0.2
+CALL @PLACE {-11.739233,-10.678872,0} -> $ret
+ROTATETO 0 0.2
+
+# second combo onto third baseplate
+COPY $place_pos $baseplate_3_pos
+COPY $pickup_pos $etroc_2_pos
+ADD $pickup_pos $pickup_pos {0,0,0.25}
+copy $vachan 2
+CALL @PICKUP
+setvac sensor_2_chuck 0
+SUB $ANG $etroc_2_yaw $baseplate_3_yaw
+SUB $ANG $ANG 0.03602 # Angle systematics
+ROTATE $ANG 0.2
+CALL @PLACE {11.755528,-10.684400,0} -> $ret
+ROTATETO 0 0.2
+
+# third combo onto third baseplate
+COPY $place_pos $baseplate_3_pos
+COPY $pickup_pos $etroc_3_pos
+ADD $pickup_pos $pickup_pos {0,0,0.25}
+copy $vachan 3
+CALL @PICKUP
+setvac sensor_3_chuck 0
+SUB $ANG $etroc_3_yaw $baseplate_3_yaw
+SUB $ANG $ANG 0.05116 # Angle systematics
+ROTATE $ANG 0.2
+CALL @PLACE {-11.742928,10.710983,0} -> $ret
+ROTATETO 0 0.2
+
+# fourth combo onto third baseplate
+COPY $place_pos $baseplate_3_pos
+COPY $pickup_pos $etroc_4_pos
+ADD $pickup_pos $pickup_pos {0,0,0.45}
+copy $vachan 4
+CALL @PICKUP
+setvac sensor_4_chuck 0
+SUB $ANG $etroc_4_yaw $baseplate_3_yaw
+#SUB $ANG $ANG 0.05638 # Angle systematics
+ROTATE $ANG 0.2
+CALL @PLACE {11.75408,10.705166,0} -> $ret
+ROTATETO 0 0.2
+
+# first combo onto fourth baseplate
+COPY $place_pos $baseplate_4_pos
+COPY $pickup_pos $etroc_5_pos
+ADD $pickup_pos $pickup_pos {0,0,0.25}
+CALL @PICKUP 1 -> $ret
+setvac sensor_1_chuck 0
+SUB $ANG $etroc_5_yaw $baseplate_4_yaw
+SUB $ANG $ANG 0.05175 # Angle systematics
+ROTATE $ANG 0.2
+CALL @PLACE {-11.739233,-10.678872,0} -> $ret
+ROTATETO 0 0.2
+
+# second combo onto fourth baseplate
+COPY $place_pos $baseplate_4_pos
+COPY $pickup_pos $etroc_6_pos
+ADD $pickup_pos $pickup_pos {0,0,0.25}
+copy $vachan 2
+CALL @PICKUP
+setvac sensor_2_chuck 0
+SUB $ANG $etroc_6_yaw $baseplate_4_yaw
+SUB $ANG $ANG 0.03602 # Angle systematics
+ROTATE $ANG 0.2
+CALL @PLACE {11.755528,-10.684400,0} -> $ret
+ROTATETO 0 0.2
+
+# third combo onto fourth baseplate
+COPY $place_pos $baseplate_4_pos
+COPY $pickup_pos $etroc_7_pos
+ADD $pickup_pos $pickup_pos {0,0,0.25}
+copy $vachan 3
+CALL @PICKUP
+setvac sensor_3_chuck 0
+SUB $ANG $etroc_7_yaw $baseplate_4_yaw
+SUB $ANG $ANG 0.05116 # Angle systematics
+ROTATE $ANG 0.2
+CALL @PLACE {-11.742928,10.710983,0} -> $ret
+ROTATETO 0 0.2
+
+# fourth combo onto fourth baseplate
+COPY $place_pos $baseplate_4_pos
+COPY $pickup_pos $etroc_8_pos
+ADD $pickup_pos $pickup_pos {0,0,0.45}
+copy $vachan 4
+CALL @PICKUP
+setvac sensor_4_chuck 0
+SUB $ANG $etroc_8_yaw $baseplate_4_yaw
+#SUB $ANG $ANG 0.05638 # Angle systematics
+ROTATE $ANG 0.2
+CALL @PLACE {11.75408,10.705166,0} -> $ret
+ROTATETO 0 0.2
+
+setvac baseplates_chuck 0
+setvac sensor_5_chuck 0
+setvac sensor_6_chuck 0
+setvac sensor_7_chuck 0
+setvac sensor_8_chuck 0
+
+UNLOADTOOL
+MOVENAME home $HI_SPEED
+HOME
+
+END
+
+@CALC_BASEPLATE_CENTER_ROT(bpn)
+    FLEXREAD $fid_dx geometry.ETL_Baseplate_PCB_Mockup.fid_dx
+    FLEXREAD $fid_dy geometry.ETL_Baseplate_PCB_Mockup.fid_dy
+    COPY $fidn 1
+
+    CALL @BASEPLATE_FID_FINDER $bpn $fidn -> $baseplate_tl
+    PRINT %v $baseplate_tl
+    INC $fidn $fidn
+
+    MOVEREL $fid_dx $HI_SPEED
+    CALL @BASEPLATE_FID_FINDER $bpn $fidn -> $baseplate_tr
+    PRINT %v $baseplate_tr
+    INC $fidn $fidn
+
+    MOVEREL $fid_dy $HI_SPEED
+    CALL @BASEPLATE_FID_FINDER $bpn $fidn -> $baseplate_br
+    PRINT %v $baseplate_br
+    INC $fidn $fidn
+
+    MUL $fid_dx -1 $fid_dx
+    MOVEREL $fid_dx $HI_SPEED
+    CALL @BASEPLATE_FID_FINDER $bpn $fidn -> $baseplate_bl
+    PRINT %v $baseplate_bl
+
+    FIT $baseplate_pos $baseplate_rot ETL_Baseplate_PCB_Mockup $baseplate_tr $baseplate_br $baseplate_bl $baseplate_tl
+    RETURN $baseplate_pos $baseplate_rot
+
+@BASEPLATE_FID_FINDER(bpn,fidn)
+    SETLIGHT 15
+    AUTOFOCUS $z 0.4 0 autoclose ##
+    SNAPSHOT gantryhead "fid_assembly\baseplate_{$bpn}_{$fidn}.png"
+    #VIDEO
+    SETERRORMODE setvar
+    COPY $RETRIES 0
+    @RETRY_BASEPLATE
+    GOTOIF @MANUAL_FID_BASEPLATE `$RETRIES=i=3`
+    INC $RETRIES $RETRIES
+    FINDFID $baseplate_fid ETL_Baseplate_PCB_Mockup
+    GOTOIF @RETRY_BASEPLATE $ERR
+    SETERRORMODE normal
+    RETURN $baseplate_fid
+    @MANUAL_FID_BASEPLATE
+    CHOICEPOPUP $c "Unable to locate fiducial, use camera feed and mpg to manually center the gantry on the fiducial" "continue" "continue"
+    PRINT "Fiducial not detected. If the fiducial is not visible in the frame, make the fiducial completely visible."
+    MPGON
+    VIDEO
+    PRINT "FINDFID for ..."
+    FINDFID $baseplate_fid ETL_Baseplate_PCB_Mockup
+    MPGOFF
+    GOTOIF @FINAL_RETRY_BASEPLATE $ERR
+    RETURN $baseplate_fid
+    @FINAL_RETRY_BASEPLATE
+    PRINT "Fiducial not detected, move the crosshair EXACTLY to the fiducial center."
+    MPGON
+    VIDEO
+    PRINT "GETPOS for ..."
+    GETPOS $baseplate_fid
+    MPGOFF
+    RETURN $baseplate_fid
+
+@CALC_ETROC_CENTER_ROT(etn,dir)
+    FLEXREAD $fid_tr_tl geometry.ETL_ETROC_PCB_Mockup.fid_tr_tl
+    FLEXREAD $fid_tl_bl geometry.ETL_ETROC_PCB_Mockup.fid_tl_bl
+    FLEXREAD $fid_bl_br geometry.ETL_ETROC_PCB_Mockup.fid_bl_br
+    COPY $fidn 1
+
+    GOTOIF @continue `$dir>0`
+    INVERT $fid_tr_tl $fid_tr_tl
+    INVERT $fid_tl_bl $fid_tl_bl
+    INVERT $fid_bl_br $fid_bl_br
+
+    @continue
+    CALL @ETROC_FID_FINDER $etn $fidn -> $etroc_tr
+    PRINT %v $etroc_tr
+    INC $fidn $fidn
+
+    MOVEREL $fid_tr_tl $HI_SPEED
+    CALL @ETROC_FID_FINDER $etn $fidn -> $etroc_tl
+    PRINT %v $etroc_tl
+    INC $fidn $fidn
+
+    MOVEREL $fid_tl_bl $HI_SPEED
+    CALL @ETROC_FID_FINDER $etn $fidn -> $etroc_bl
+    PRINT %v $etroc_bl
+    INC $fidn $fidn
+
+    MOVEREL $fid_bl_br $HI_SPEED
+    CALL @ETROC_FID_FINDER $etn $fidn -> $etroc_br
+    PRINT %v $etroc_br
+
+    FIT $etroc_pos $etroc_rot ETL_ETROC_PCB_Mockup $etroc_tr $etroc_br $etroc_bl $etroc_tl
+    RETURN $etroc_pos $etroc_rot
+
+@ETROC_FID_FINDER(etn,fidn)
+    SETLIGHT 15
+    AUTOFOCUS $z 0.4 0 autoclose ##
+    SNAPSHOT gantryhead "fid_assembly\etroc_{$etn}_{$fidn}.png"
+    #VIDEO
+    SETERRORMODE setvar
+    COPY $RETRIES 0
+    @RETRY_ETROC
+    GOTOIF @MANUAL_FID_ETROC `$RETRIES=i=3`
+    INC $RETRIES $RETRIES
+    FINDFID $etroc_fid ETL_ETROC_PCB_Mockup
+    GOTOIF @RETRY_ETROC $ERR
+    SETERRORMODE normal
+    RETURN $etroc_fid
+    @MANUAL_FID_ETROC
+    CHOICEPOPUP $c "Unable to locate fiducial, use camera feed and mpg to manually center the gantry on the fiducial" "continue" "continue"
+    PRINT "Fiducial not detected. If the fiducial is not visible in the frame, make the fiducial completely visible."
+    MPGON
+    VIDEO
+    PRINT "FINDFID for ..."
+    FINDFID $etroc_fid ETL_ETROC_PCB_Mockup
+    MPGOFF
+    GOTOIF @FINAL_RETRY_ETROC $ERR
+    RETURN $etroc_fid
+    @FINAL_RETRY_ETROC
+    PRINT "Fiducial not detected, move the crosshair EXACTLY to the fiducial center."
+    MPGON
+    VIDEO
+    PRINT "GETPOS for ..."
+    GETPOS $etroc_fid
+    MPGOFF
+    RETURN $etroc_fid
+
+@CALC_SENSOR_CENTER_ROT
+    FLEXREAD $fid_dx geometry.ETL_Sensor_PCB_Mockup.fid_dx
+    FLEXREAD $fid_dy geometry.ETL_Sensor_PCB_Mockup.fid_dy
+    COPY $fidn 1
+
+    CALL @SENSOR_FID_FINDER -> $Sensor_tl
+    INC $fidn $fidn
+
+    MOVEREL $fid_dx $LO_SPEED
+    CALL @SENSOR_FID_FINDER -> $Sensor_tr
+    INC $fidn $fidn
+
+    MOVEREL $fid_dy $LO_SPEED
+    CALL @SENSOR_FID_FINDER -> $Sensor_br
+    INC $fidn $fidn
+
+    MUL $fid_dx -1 $fid_dx
+    MOVEREL $fid_dx $LO_SPEED
+    CALL @SENSOR_FID_FINDER -> $Sensor_bl
+
+    FIT $sensor_pos $sensor_rot ETL_Sensor_PCB_Mockup $Sensor_tr $Sensor_br $Sensor_bl $Sensor_tl
+    RETURN $sensor_pos $sensor_rot
+
+@SENSOR_FID_FINDER
+    SETLIGHT 15
+    AUTOFOCUS $z 0.4 0 autoclose ##
+    SNAPSHOT gantryhead "fid\sensor_{$etn}_{$fidn}.png"
+    #VIDEO
+    SETERRORMODE setvar
+    COPY $RETRIES 0
+    @RETRY_SENSOR
+    GOTOIF @MANUAL_FID_SENSOR `$RETRIES=i=3`
+    INC $RETRIES $RETRIES
+    FINDFID $sensor_fid ETL_Sensor_PCB_Mockup
+    GOTOIF @RETRY_SENSOR $ERR
+    SETERRORMODE normal
+    RETURN $sensor_fid
+    @MANUAL_FID_SENSOR
+    CHOICEPOPUP $c "Unable to locate fiducial, use camera feed and mpg to manually center the gantry on the fiducial" "continue" "continue"
+    PRINT "Fiducial not detected. If the fiducial is not visible in the frame, make the fiducial completely visible."
+    MPGON
+    VIDEO
+    PRINT "FINDFID for ..."
+    FINDFID $sensor_fid ETL_Sensor_PCB_Mockup
+    MPGOFF
+    GOTOIF @FINAL_RETRY_SENSOR $ERR
+    RETURN $sensor_fid
+    @FINAL_RETRY_SENSOR
+    PRINT "Fiducial not detected, move the crosshair EXACTLY to the fiducial center."
+    MPGON
+    VIDEO
+    PRINT "GETPOS for ..."
+    GETPOS $sensor_fid
+    MPGOFF
+    RETURN $sensor_fid
+
+@PICKUP(vachan)
+    FLEXREAD $pickup_tho geometry.tool_holder_offset
+    FLEXREAD $pickup_co geometry.PICKER_TOOL.center_offset
+    FLEXREAD $camera_to_obj geometry.camera_focused_to_object
+
+    ADD $pickup_pos $pickup_pos $pickup_tho
+    ADD $pickup_pos $pickup_pos $pickup_co
+    ADD $pickup_pos $pickup_pos $camera_to_obj
+    ADD $pickup_pos $pickup_pos {0,0,-10}
+
+    print %v $pickup_pos
+
+    MOVETO $pickup_pos $LO_SPEED
+    MOVEREL {0,0,10} $LO_SPEED
+    MOVEREL {0,0,1.5} 1
+    WAIT 1000
+    SETVAC gantry_head_inner 1
+    WAIT 1000
+    ## CALL @vacsens $vachan -> $ret
+    WAIT 1000
+    MOVEREL {0,0,-20} 10
+    RETURN 0
+
+@vacsens(chan) # Toggle an individual channel of sensor vacuum. Channel 0 is reserved for pickup.
+    GOTOIF @vachead `$chan=i=0`
+    GETVAC sensor_{$chan:%d}_chuck $state
+    ABS $state `$state-1`
+    SETVAC sensor_{$chan:%d}_chuck $state
+    RETURN 0
+        @vachead
+        GETVAC gantry_head_inner $state
+        ABS $state `$state-1`
+        SETVAC gantry_head_inner $state
+        RETURN 0
+
+@vacbase(chan) # Toggle baseplate vacuum
+    GETVAC baseplates_chuck $state
+    ABS $state `$state-1`
+    SETVAC baseplates_chuck $state
+    RETURN 0
+
+@PLACE(offset)
+    FLEXREAD $place_tho geometry.tool_holder_offset
+    FLEXREAD $place_co geometry.PICKER_TOOL.center_offset
+    FLEXREAD $camera_to_obj geometry.camera_focused_to_object
+    ADD $place_pos $place_pos $place_tho
+    ADD $place_pos $place_pos $place_co
+    ADD $place_pos $place_pos $camera_to_obj
+    ADD $place_pos $place_pos {0,0,-7}
+    print %v $place_pos
+
+    ADD $place_pos $place_pos $offset
+
+    MOVETO $place_pos $LO_SPEED
+    MOVEREL {0,0,8.5} 1
+    WAIT 1000
+    SETVAC gantry_head_inner 0
+    WAIT 1000
+    MOVEREL {0,0,-20} 10
+    RETURN 0
+
+@ROT_CORRECT(V,bpyaw)
+    COS $C $bpyaw
+    SIN $S $bpyaw
+    MUL $XM $C $V.x
+    MUL $YM $S $V.y
+    SUB $XR $XM $YM
+    MUL $XM $S $V.x
+    MUL $YM $C $V.y
+    ADD $YR $YM $XM
+    COPY $VROT {$XR,$YR,$V.z}
+    RETURN $VROT
+
+@ANGLE_FIX(etroc_yaw) # Angles of the ETROCs on the right side are shown as either ~179 deg. (ccw deviation) or ~-179 deg. (cw deviation). ANGLE_FIX function fixes this problem with angle values.
+    ABS $one80 $etroc_yaw
+    INVERT $one80 $one80
+    MUL $one80 $one80 -180
+    MUL $one80 $one80 $etroc_yaw
+    ADD $etroc_yaw $etroc_yaw $one80
+    RETURN $etroc_yaw

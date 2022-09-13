@@ -1,0 +1,98 @@
+HOME
+#SETVAC chuck_0 1
+#SETVAC chuck_1 1
+
+COPY $LO_SPEED 20
+COPY $HI_SPEED 40
+
+COPY $baseplate_tl {63.477528,230.044146,93.303600}
+COPY $baseplate_tr {95.534000,228.237000,93.140250}
+COPY $baseplate_br {98.246106,276.644848,93.061300}
+COPY $baseplate_bl {66.204060,278.471062,93.244000}
+
+FIT $baseplate_pos $baseplate_rot ETL_Baseplate_PCB_Mockup $baseplate_tr $baseplate_br $baseplate_bl $baseplate_tl
+
+COPY $sensor_tl {311.908475,216.178883,83.255500}
+COPY $sensor_tr {349.438894,219.715004,83.211450}
+COPY $sensor_br {347.699380,237.931131,83.298650}
+COPY $sensor_bl {310.169466,234.392960,83.285150}
+
+FIT $sensor_one_pos $sensor_one_rot ETL_Sensor_PCB_Mockup $sensor_tr $sensor_br $sensor_bl $sensor_tl
+
+COPY $sensor_tl {360.110000,220.691000,83.236050}
+COPY $sensor_tr {397.659000,224.203000,83.236050}
+COPY $sensor_br {395.936000,242.424000,83.236050}
+COPY $sensor_bl {358.404000,238.924000,83.236050}
+
+FIT $sensor_two_pos $sensor_two_rot ETL_Sensor_PCB_Mockup $sensor_tr $sensor_br $sensor_bl $sensor_tl
+
+LOADTOOL picker_tool
+
+COPY $place_pos $baseplate_pos
+COPY $place_rot $baseplate_rot
+
+COPY $pickup_pos $sensor_one_pos
+CALL @PICKUP 
+COPY $offset -12.65
+COPY $pickup_rot $sensor_one_rot
+CALL @PLACE
+ROTATETO 0
+
+COPY $place_pos $baseplate_pos
+COPY $place_rot $baseplate_rot
+
+
+COPY $pickup_pos $sensor_two_pos
+CALL @PICKUP 
+COPY $offset 12.65
+COPY $pickup_rot $sensor_two_rot
+CALL @PLACE
+ROTATETO 0
+
+UNLOADTOOL
+
+END
+
+
+@PICKUP PASS
+    FLEXREAD $pickup_tho geometry.tool_holder_offset
+    FLEXREAD $pickup_co geometry.PICKER_TOOL.center_offset
+    SUB $pickup_pos $pickup_pos $pickup_tho
+    SUB $pickup_pos $pickup_pos $pickup_co
+    print %v $pickup_pos
+    MOVETO $pickup_pos 20
+    MOVEREL {0,0,1.22} 1
+    WAIT 1000
+    SETVAC gantry_head_inner 1
+    WAIT 2000
+    MOVEREL {0,0,-20} 10
+    GOTO $RET
+
+@PLACE PASS
+    FLEXREAD $place_tho geometry.tool_holder_offset
+    FLEXREAD $place_co geometry.PICKER_TOOL.center_offset
+    SUB $place_pos $place_pos $place_tho
+    SUB $place_pos $place_pos $place_co
+    print %v $place_pos
+    QUAT2EULER $pickup_yaw $p $r $pickup_rot
+    ROTATE $pickup_yaw 5
+    INVERT $place_rot $place_rot
+    QUAT2EULER $place_yaw $p $r $place_rot
+    ROTATE $place_yaw 5
+
+    COS $cos_place $place_yaw
+    SIN $sin_place $place_yaw
+
+    MUL $dx_place $offset $sin_place
+    MUL $dy_place $offset $cos_place
+
+    ADD $place_pos.x $place_pos.x $dx_place
+    ADD $place_pos.y $place_pos.y $dy_place
+
+    MOVETO $place_pos 20
+    MOVEREL {0,0,1.18} 1
+    WAIT 2000
+    SETVAC gantry_head_inner 0
+    WAIT 2000
+    MOVEREL {0,0,-20} 10
+    GOTO $RET

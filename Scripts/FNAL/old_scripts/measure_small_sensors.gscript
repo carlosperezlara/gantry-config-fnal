@@ -1,0 +1,67 @@
+SETLOG "measure_small_sensors.txt"
+
+COPY $LO_SPEED 20
+COPY $HI_SPEED 40
+
+SETLIGHT 50
+
+MOVENAME ETL_smallSensor_chuck_0_slot_1 $HI_SPEED
+CALL @MEASURE_SMALLSENSOR_FIDS
+
+MOVENAME ETL_smallSensor_chuck_0_slot_2 $HI_SPEED
+CALL @MEASURE_SMALLSENSOR_FIDS
+
+MOVENAME ETL_smallSensor_chuck_0_slot_3 $HI_SPEED
+CALL @MEASURE_SMALLSENSOR_FIDS
+
+MOVENAME ETL_smallSensor_chuck_0_slot_4 $HI_SPEED
+CALL @MEASURE_SMALLSENSOR_FIDS
+
+MOVENAME home $HI_SPEED
+
+END
+ 
+@MEASURE_SMALLSENSOR_FIDS COPY $BREAK $RET
+FLEXREAD $fid_dx geometry.ETL_smallSensor_PCB_Mockup.fid_dx
+FLEXREAD $fid_dy geometry.ETL_smallSensor_PCB_Mockup.fid_dy
+
+# measure top left fiducial
+CALL @SMALLSENSOR_FID_FINDER
+PRINT "SMALLSENSOR_TL_FID: %v" $smallsensor_fid
+
+# measure top right fiducial
+MOVEREL $fid_dx $LO_SPEED
+CALL @SMALLSENSOR_FID_FINDER
+PRINT "SMALLSENSOR_TR_FID: %v" $smallsensor_fid
+
+# measure bottom right fiducial
+MOVEREL $fid_dy $LO_SPEED
+CALL @SMALLSENSOR_FID_FINDER
+PRINT "SMALLSENSOR_BR_FID: %v" $smallsensor_fid
+
+# measure bottom left fiducial
+MUL $fid_dx -1 $fid_dx
+MOVEREL $fid_dx $LO_SPEED
+CALL @SMALLSENSOR_FID_FINDER
+PRINT "SMALLSENSOR_BL_FID: %v" $smallsensor_fid
+
+GOTO $BREAK
+
+
+@SMALLSENSOR_FID_FINDER COPY $BREAKOUT $RET
+    AUTOFOCUS $z 0.5 autoclose
+    SETERRORMODE setvar
+    COPY $RETRIES 3
+    @RETRY_SMALLSENSOR DEC $RETRIES $RETRIES
+    GOTOIFN @MANUAL_FID_SS $RETRIES
+    FINDFID $smallsensor_fid ETL_smallSensor_PCB_Mockup
+    GOTOIF @RETRY_SMALLSENSOR $ERR
+    SETERRORMODE normal
+    GOTO $BREAKOUT
+    @MANUAL_FID_SS CHOICEPOPUP $c "Unable to locate fiducial, use camera feed and mpg to manually center the gantry on the fiducial" "continue" "continue"
+    MPGON
+    VIDEO
+    GETPOS $smallsensor_fid
+    MPGOFF
+    GOTO $BREAKOUT
+

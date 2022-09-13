@@ -1,0 +1,5 @@
+home
+loadtool picker_tool
+moverel {94,273,-30} 50
+#setvac gantry_head_inner 1
+#setvac sensor_1_chuck 1

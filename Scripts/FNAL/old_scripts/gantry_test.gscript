@@ -1,0 +1,16 @@
+HOME
+
+# $count is the number of iterations you want to perform
+COPY $count 20
+COPY $speed 30 # mm/s
+
+
+@LOOP MOVETO {10,10,0} $speed
+      MOVETO {490,10,0} $speed
+      MOVETO {490,490,0} $speed
+      MOVETO {10,490,0} $speed
+            
+      DEC $count $count
+      GOTOIF @LOOP $count
+
+PRINT "Done."

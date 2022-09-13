@@ -1,0 +1,36 @@
+#SETVAC stamps_chuck 1
+SETVAC baseplates_chuck 1
+LOADTOOL grabber_tool
+
+CALL @WEIGHT {384.712000,206.116000,60.410000} {52.482000,132.802000,52.570000} 1 -> $ret
+CALL @WEIGHT {385.037000,240.746000,60.410000} {52.482000,160.982000,52.570000} -1 -> $ret
+
+SETVAC stamps_chuck 0
+SETVAC baseplates_chuck 0
+UNLOADTOOL
+HOME
+END
+
+@WEIGHT(p,t,e) # pickup, target, enter/exit orientation (+/-1)
+    SUB $p $p {0,9.5,10}
+    MOVETO $p 30
+    MOVEREL {0,0,10} 10
+    MOVEREL {0,9.5,0} 10
+    MOVEREL {0,0,-15} 10
+
+    GOTOIF @continue `$e<0`
+    SUB $t $t {0,5,20}
+    MOVETO $t 50
+    MOVEREL {0,5,10} 10
+    MOVEREL {0,0,10} 10
+    MOVEREL {0,9.5,0} 10
+    MOVEREL {0,0,-20} 10
+    RETURN 0
+    @continue
+    SUB $t $t {0,-5,20}
+    MOVETO $t 50
+    MOVEREL {0,-5,10} 10
+    MOVEREL {0,0,10} 10
+    MOVEREL {0,9.5,0} 10
+    MOVEREL {0,0,-20} 10
+    RETURN 0

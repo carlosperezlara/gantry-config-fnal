@@ -1,0 +1,11 @@
+copy $i 1
+@begin
+video
+getpos $p
+wait 1500
+print %v $p $i
+inc $i $i
+goto @begin
+end
+
+#MOVENAME ETL_baseplate_chuck_1_slot_ 50 direct

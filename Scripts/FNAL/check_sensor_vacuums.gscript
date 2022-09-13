@@ -1,0 +1,67 @@
+WAIT 3000
+SETVAC sensor_1_chuck 1
+WAIT 3000
+SETVAC sensor_2_chuck 1
+WAIT 3000
+SETVAC sensor_3_chuck 1
+WAIT 3000
+SETVAC sensor_4_chuck 1
+WAIT 3000
+SETVAC sensor_5_chuck 1
+WAIT 3000
+SETVAC sensor_6_chuck 1
+WAIT 3000
+SETVAC sensor_7_chuck 1
+WAIT 3000
+SETVAC sensor_8_chuck 1
+WAIT 3000
+SETVAC sensor_9_chuck 1
+WAIT 3000
+SETVAC sensor_10_chuck 1
+WAIT 3000
+SETVAC sensor_11_chuck 1
+WAIT 3000
+SETVAC sensor_12_chuck 1
+WAIT 3000
+SETVAC sensor_13_chuck 1
+WAIT 3000
+SETVAC sensor_14_chuck 1
+WAIT 3000
+SETVAC sensor_15_chuck 1
+WAIT 3000
+SETVAC sensor_16_chuck 1
+
+CHOICEPOPUP $c "Click to turn off all channels" "Continue" "Continue"
+
+SETVAC sensor_16_chuck 0
+WAIT 100
+SETVAC sensor_15_chuck 0
+WAIT 100
+SETVAC sensor_14_chuck 0
+WAIT 100
+SETVAC sensor_13_chuck 0
+WAIT 100
+SETVAC sensor_12_chuck 0
+WAIT 100
+SETVAC sensor_11_chuck 0
+WAIT 100
+SETVAC sensor_10_chuck 0
+WAIT 100
+SETVAC sensor_9_chuck 0
+WAIT 100
+SETVAC sensor_8_chuck 0
+WAIT 100
+SETVAC sensor_7_chuck 0
+WAIT 100
+SETVAC sensor_6_chuck 0
+WAIT 100
+SETVAC sensor_5_chuck 0
+WAIT 100
+SETVAC sensor_4_chuck 0
+WAIT 100
+SETVAC sensor_3_chuck 0
+WAIT 100
+SETVAC sensor_2_chuck 0
+WAIT 100
+SETVAC sensor_1_chuck 0
+END

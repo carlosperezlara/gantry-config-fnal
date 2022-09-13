@@ -1,0 +1,6 @@
+#HOME
+#SETVAC baseplates_chuck 1
+#MOVENAME ETL_baseplate_chuck_1_slot_1 50
+#VIDEO
+GETPOS $P
+PRINT %v $P

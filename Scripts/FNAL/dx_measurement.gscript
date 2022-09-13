@@ -1,0 +1,35 @@
+SETVAC baseplates_chuck 1
+SETLOG "garbage.txt"
+#HOME
+#MOVENAME ETL_baseplate_chuck_1_slot_1 50
+MPGON
+COPY $V {0,0,0,0}
+CALL @PYTH 1 -> $V.x
+CALL @PYTH 0 -> $V.y
+MOVEREL {0,0,0.344}
+CALL @PYTH 0 -> $V.z
+CALL @PYTH 0 -> $V.w
+PRINT %q $V
+MOVEREL {4.5,0,0}
+END
+
+@PYTH(r)
+VIDEO
+GETPOS $P0
+GOTOIF @RAISE $r
+VIDEO
+GETPOS $P
+SUB $P $P $P0
+POW $P.x $P.x 2
+POW $P.y $P.y 2
+POW $D `$P.x+$P.y` 0.5
+RETURN $D
+@RAISE
+MOVEREL {0,0,-0.344}
+VIDEO
+GETPOS $P
+SUB $P $P $P0
+POW $P.x $P.x 2
+POW $P.y $P.y 2
+POW $D `$P.x+$P.y` 0.5
+RETURN $D

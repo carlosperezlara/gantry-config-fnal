@@ -1,0 +1,67 @@
+SETLOG "measure_cover_plates.txt"
+
+COPY $LO_SPEED 20
+COPY $HI_SPEED 40
+
+SETLIGHT 50
+
+MOVENAME ETL_coverplate_chuck_0_slot_1 $HI_SPEED
+CALL @MEASURE_COVERPLATE_FIDS
+
+MOVENAME ETL_coverplate_chuck_0_slot_2 $HI_SPEED
+CALL @MEASURE_COVERPLATE_FIDS
+
+MOVENAME ETL_coverplate_chuck_0_slot_3 $HI_SPEED
+CALL @MEASURE_COVERPLATE_FIDS
+
+MOVENAME ETL_coverplate_chuck_0_slot_4 $HI_SPEED
+CALL @MEASURE_COVERPLATE_FIDS
+
+MOVENAME home $HI_SPEED
+
+END
+ 
+@MEASURE_COVERPLATE_FIDS COPY $BREAK $RET
+FLEXREAD $fid_dx geometry.ETL_Coverplate_PCB_Mockup.fid_dx
+FLEXREAD $fid_dy geometry.ETL_Coverplate_PCB_Mockup.fid_dy
+
+# measure top left fiducial
+CALL @COVERPLATE_FID_FINDER
+PRINT "COVERPLATE_TL_FID: %v" $coverplate_fid
+
+# measure top right fiducial
+MOVEREL $fid_dx $LO_SPEED
+CALL @COVERPLATE_FID_FINDER
+PRINT "COVERPLATE_TR_FID: %v" $coverplate_fid
+
+# measure bottom right fiducial
+MOVEREL $fid_dy $LO_SPEED
+CALL @COVERPLATE_FID_FINDER
+PRINT "COVERPLATE_BR_FID: %v" $coverplate_fid
+
+# measure bottom left fiducial
+MUL $fid_dx -1 $fid_dx
+MOVEREL $fid_dx $LO_SPEED
+CALL @COVERPLATE_FID_FINDER
+PRINT "COVERPLATE_BL_FID: %v" $coverplate_fid
+
+GOTO $BREAK
+
+
+@COVERPLATE_FID_FINDER COPY $BREAKOUT $RET
+    AUTOFOCUS $z 0.5 autoclose
+    SETERRORMODE setvar
+    COPY $RETRIES 3
+    @RETRY_COVERPLATE DEC $RETRIES $RETRIES
+    GOTOIFN @MANUAL_FID_CP $RETRIES
+    FINDFID $coverplate_fid ETL_Coverplate_PCB_Mockup
+    GOTOIF @RETRY_COVERPLATE $ERR
+    SETERRORMODE normal
+    GOTO $BREAKOUT
+    @MANUAL_FID_CP CHOICEPOPUP $c "Unable to locate fiducial, use camera feed and mpg to manually center the gantry on the fiducial" "continue" "continue"
+    MPGON
+    VIDEO
+    GETPOS $coverplate_fid
+    MPGOFF
+    GOTO $BREAKOUT
+

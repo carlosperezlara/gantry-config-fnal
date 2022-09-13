@@ -1,0 +1,460 @@
+#================================================
+#====== Hardware configuration
+#================================================
+camera.gantryhead.CameraGroup: 1
+camera.gantryhead.VendorName: UI348xML-M_4103627983
+camera.gantryhead.SerialNumberHigh: 0x7339A254
+camera.gantryhead.SerialNumberLow: 0x10305237
+camera.gantryhead.FOV-x: 1.132
+camera.gantryhead.FOV-y: 0.846
+
+dispenser.hardware_address: cDAQ1Mod1/port0/line31
+
+
+vacuum.gantry_head_outer: 16
+vacuum.gantry_head_inner: 17
+
+vacuum.stamps_chuck: 18
+vacuum.reservoir_chuck: 19
+vacuum.baseplates_chuck: 20
+vacuum.port_21: 21
+vacuum.port_22: 22
+vacuum.port_23: 23
+vacuum.port_24: 24
+vacuum.port_25: 25
+vacuum.port_26: 26
+vacuum.port_27: 27
+vacuum.port_28: 28
+vacuum.port_29: 29
+vacuum.port_30: 30
+
+
+vacuum.sensor_1_chuck: 1
+vacuum.sensor_2_chuck: 0
+vacuum.sensor_3_chuck: 3
+vacuum.sensor_4_chuck: 2
+vacuum.sensor_5_chuck: 5
+vacuum.sensor_6_chuck: 4
+vacuum.sensor_7_chuck: 7
+vacuum.sensor_8_chuck: 6
+vacuum.sensor_9_chuck: 9
+vacuum.sensor_10_chuck: 8
+vacuum.sensor_11_chuck: 11
+vacuum.sensor_12_chuck: 10
+vacuum.sensor_13_chuck: 13
+vacuum.sensor_14_chuck: 12
+vacuum.sensor_15_chuck: 15
+vacuum.sensor_16_chuck: 14
+
+
+manifold.reset_on_start: false
+manifold.port.00: cDAQ1Mod1/port0/line0
+manifold.port.01: cDAQ1Mod1/port0/line1
+manifold.port.02: cDAQ1Mod1/port0/line2
+manifold.port.03: cDAQ1Mod1/port0/line3
+manifold.port.04: cDAQ1Mod1/port0/line4
+manifold.port.05: cDAQ1Mod1/port0/line5
+manifold.port.06: cDAQ1Mod1/port0/line6
+manifold.port.07: cDAQ1Mod1/port0/line7
+manifold.port.08: cDAQ1Mod1/port0/line8
+manifold.port.09: cDAQ1Mod1/port0/line9
+manifold.port.10: cDAQ1Mod1/port0/line10
+manifold.port.11: cDAQ1Mod1/port0/line11
+manifold.port.12: cDAQ1Mod1/port0/line12
+manifold.port.13: cDAQ1Mod1/port0/line13
+manifold.port.14: cDAQ1Mod1/port0/line14
+manifold.port.15: cDAQ1Mod1/port0/line15
+manifold.port.16: cDAQ1Mod1/port0/line16
+manifold.port.17: cDAQ1Mod1/port0/line17
+manifold.port.18: cDAQ1Mod1/port0/line18
+manifold.port.19: cDAQ1Mod1/port0/line19
+manifold.port.20: cDAQ1Mod1/port0/line20
+manifold.port.21: cDAQ1Mod1/port0/line21
+manifold.port.22: cDAQ1Mod1/port0/line22
+manifold.port.23: cDAQ1Mod1/port0/line23
+manifold.port.24: cDAQ1Mod1/port0/line24
+manifold.port.25: cDAQ1Mod1/port0/line25
+manifold.port.26: cDAQ1Mod1/port0/line26
+manifold.port.27: cDAQ1Mod1/port0/line27
+manifold.port.28: cDAQ1Mod1/port0/line28
+manifold.port.29: cDAQ1Mod1/port0/line29
+manifold.port.30: cDAQ1Mod1/port0/line30
+
+tool_rack.0: picker_tool
+tool_rack.1: grabber_tool
+tool_rack.2: None
+
+#================================================
+#====== Geometry Definitions
+#================================================
+
+geometry.ETL_Baseplate_PCB_Mockup.fid_tr: {27.25,-20.55,0}
+geometry.ETL_Baseplate_PCB_Mockup.fid_tl: {-27.25,-20.55,0}
+geometry.ETL_Baseplate_PCB_Mockup.fid_bl: {-27.25,20.55,0}
+geometry.ETL_Baseplate_PCB_Mockup.fid_br: {27.25,20.55,0}
+geometry.ETL_Baseplate_PCB_Mockup.fid_dx: {54.5,0,0}
+geometry.ETL_Baseplate_PCB_Mockup.fid_dy: {0,41.1,0}
+
+geometry.ETL_ETROC_PCB_Mockup.fid_tr: {10.00,-9.125,0}
+# ETROCS currently have TL fiducial misplaced by .5mm
+geometry.ETL_ETROC_PCB_Mockup.fid_tl: {-10.00,-8.625,0}
+geometry.ETL_ETROC_PCB_Mockup.fid_bl: {-10.00,9.125,0}
+geometry.ETL_ETROC_PCB_Mockup.fid_br: {10.00,9.125,0}
+geometry.ETL_ETROC_PCB_Mockup.fid_tl_tr: {20.0,-.55,0}
+geometry.ETL_ETROC_PCB_Mockup.fid_tr_br: {0,18.25,0}
+geometry.ETL_ETROC_PCB_Mockup.fid_br_bl: {-20.0,0,0}
+geometry.ETL_ETROC_PCB_Mockup.fid_tr_tl: {-20.0,0.55,0}
+geometry.ETL_ETROC_PCB_Mockup.fid_tl_bl: {0,17.65,0}
+geometry.ETL_ETROC_PCB_Mockup.fid_bl_br: {20.0,0,0}
+
+geometry.ETL_Coverplate_PCB_Mockup.fid_tr: {9.375,-20.25,0}
+geometry.ETL_Coverplate_PCB_Mockup.fid_tl: {-9.375,-20.25,0}
+geometry.ETL_Coverplate_PCB_Mockup.fid_bl: {-9.375,20.25,0}
+geometry.ETL_Coverplate_PCB_Mockup.fid_br: {9.375,20.25,0}
+geometry.ETL_Coverplate_PCB_Mockup.fid_dx: {18.75,0,0}
+geometry.ETL_Coverplate_PCB_Mockup.fid_dy: {0,40.5,0}
+
+geometry.ETL_Sensor_PCB_Mockup.fid_tr: {9.65,-9.625,0}
+geometry.ETL_Sensor_PCB_Mockup.fid_tl: {-9.65,-9.625,0}
+geometry.ETL_Sensor_PCB_Mockup.fid_bl: {-9.65,9.625,0}
+geometry.ETL_Sensor_PCB_Mockup.fid_br: {9.65,9.625,0}
+geometry.ETL_Sensor_PCB_Mockup.fid_dx: {19.3,0,0}
+geometry.ETL_Sensor_PCB_Mockup.fid_dy: {0,19.25,0}
+
+
+geometry.ETL_Baseplate_Green_PCB_Mockup.fid_tr: {16.05,-24.25,0}
+geometry.ETL_Baseplate_Green_PCB_Mockup.fid_tl: {-16.05,-24.25,0}
+geometry.ETL_Baseplate_Green_PCB_Mockup.fid_bl: {-16.05,24.25,0}
+geometry.ETL_Baseplate_Green_PCB_Mockup.fid_br: {16.05,24.25,0}
+geometry.ETL_Baseplate_Green_PCB_Mockup.fid_dx: {32.10,0,0}
+geometry.ETL_Baseplate_Green_PCB_Mockup.fid_dy: {0,48.50,0}
+
+geometry.ETL_Sensor_Green_PCB_Mockup.fid_tr: {18.85,-9.15,0}
+geometry.ETL_Sensor_Green_PCB_Mockup.fid_tl: {-18.85,-9.15,0}
+geometry.ETL_Sensor_Green_PCB_Mockup.fid_bl: {-18.85,9.15,0}
+geometry.ETL_Sensor_Green_PCB_Mockup.fid_br: {18.85,9.15,0}
+geometry.ETL_Sensor_Green_PCB_Mockup.fid_dx: {37.70,0,0}
+geometry.ETL_Sensor_Green_PCB_Mockup.fid_dy: {0,18.30,0}
+
+geometry.camera_focused_to_object: {0,0,33}
+
+geometry.PICKER_TOOL.center_offset: {0,0,-50.7}  # Height of picker tool
+
+# The offset between the camera and the
+# center-of-rotation of the gantry head in x-y
+# and the bottom surface of the tool-holder in z
+geometry.tool_holder_offset: {-0.16,70.80,-23.55}
+
+#================================================
+#====== Vision/Pattern Recognition parameters
+#================================================
+
+vision.debug_enable: False
+vision.log_directory: C:\Users\Public\Documents\pixel-gantry-control\Logs
+vision.autofocus.step_size: 0.03 # mm
+vision.autofocus.delay: 10 # ms
+
+vision.ETL_Coverplate_PCB_Mockup.method: find_patches
+vision.ETL_Coverplate_PCB_Mockup.shrinkFactor: 1
+vision.ETL_Coverplate_PCB_Mockup.dilateSize: 6
+vision.ETL_Coverplate_PCB_Mockup.sizeMin: 0.1
+vision.ETL_Coverplate_PCB_Mockup.sizeMax: 0.2
+vision.ETL_Coverplate_PCB_Mockup.colorGroups: 2
+vision.ETL_Coverplate_PCB_Mockup.aspectRatioMin: 0.9
+vision.ETL_Coverplate_PCB_Mockup.aspectRatioMax: 1.1
+
+vision.ETL_Sensor_PCB_Mockup.method: find_patches
+vision.ETL_Sensor_PCB_Mockup.shrinkFactor: 1
+vision.ETL_Sensor_PCB_Mockup.dilateSize: 6
+vision.ETL_Sensor_PCB_Mockup.sizeMin: 0.1
+vision.ETL_Sensor_PCB_Mockup.sizeMax: 0.2
+vision.ETL_Sensor_PCB_Mockup.colorGroups: 2
+vision.ETL_Sensor_PCB_Mockup.aspectRatioMin: 0.9
+vision.ETL_Sensor_PCB_Mockup.aspectRatioMax: 1.1
+
+vision.ETL_Baseplate_PCB_Mockup.method: find_patches
+vision.ETL_Baseplate_PCB_Mockup.shrinkFactor: 1
+vision.ETL_Baseplate_PCB_Mockup.dilateSize: 6
+vision.ETL_Baseplate_PCB_Mockup.sizeMin: 0.1
+vision.ETL_Baseplate_PCB_Mockup.sizeMax: 0.2
+vision.ETL_Baseplate_PCB_Mockup.colorGroups: 2
+vision.ETL_Baseplate_PCB_Mockup.aspectRatioMin: 0.9
+vision.ETL_Baseplate_PCB_Mockup.aspectRatioMax: 1.1
+
+vision.ETL_ETROC_PCB_Mockup.method: find_patches
+vision.ETL_ETROC_PCB_Mockup.shrinkFactor: 1
+vision.ETL_ETROC_PCB_Mockup.dilateSize: 6
+vision.ETL_ETROC_PCB_Mockup.sizeMin: 0.1
+vision.ETL_ETROC_PCB_Mockup.sizeMax: 0.2
+vision.ETL_ETROC_PCB_Mockup.colorGroups: 2
+vision.ETL_ETROC_PCB_Mockup.aspectRatioMin: 0.9
+vision.ETL_ETROC_PCB_Mockup.aspectRatioMax: 1.1
+
+
+vision.ETL_Baseplate_Green_PCB_Mockup.method: find_patches
+vision.ETL_Baseplate_Green_PCB_Mockup.shrinkFactor: 1
+vision.ETL_Baseplate_Green_PCB_Mockup.dilateSize: 5
+vision.ETL_Baseplate_Green_PCB_Mockup.sizeMin: 0.2
+vision.ETL_Baseplate_Green_PCB_Mockup.sizeMax: 0.4
+vision.ETL_Baseplate_Green_PCB_Mockup.colorGroups: 2
+vision.ETL_Baseplate_Green_PCB_Mockup.aspectRatioMin: 0.9
+vision.ETL_Baseplate_Green_PCB_Mockup.aspectRatioMax: 1.1
+
+vision.ETL_Sensor_Green_PCB_Mockup.method: find_patches
+vision.ETL_Sensor_Green_PCB_Mockup.shrinkFactor: 1
+vision.ETL_Sensor_Green_PCB_Mockup.dilateSize: 5
+vision.ETL_Sensor_Green_PCB_Mockup.sizeMin: 0.16
+vision.ETL_Sensor_Green_PCB_Mockup.sizeMax: 0.18
+vision.ETL_Sensor_Green_PCB_Mockup.colorGroups: 2
+vision.ETL_Sensor_Green_PCB_Mockup.aspectRatioMin: 0.9
+vision.ETL_Sensor_Green_PCB_Mockup.aspectRatioMax: 1.1
+
+#================================================
+#====== "Safe" (ie graph-based) motion data
+#================================================
+# Data file for the "safe move" functionality of the gantry software.
+# Here are declared labeled positions and routes among the positions
+# The gantry software will find the shortest path to get from
+# point to point
+
+#graph_motion.pos.LABEL: {x,y,z}
+graph_motion.pos.home: {10,10,0}
+
+# Positions of the top left fiducial for each slot in each chuck
+
+graph_motion.pos.ETL_baseplate_chuck_1_slot_1:{25.504000,55.236000,95.852950}
+graph_motion.pos.ETL_baseplate_chuck_1_slot_2:{25.380000,107.063000,95.888850}
+graph_motion.pos.ETL_baseplate_chuck_1_slot_3:{25.336000,158.917000,95.937800}
+graph_motion.pos.ETL_baseplate_chuck_1_slot_4:{25.186000,210.796000,95.918050}
+
+graph_motion.pos.ETL_sensor_chuck_1_slot_1: {10.693617,303.560446,101.610000}
+graph_motion.pos.ETL_sensor_chuck_1_slot_2: {82.814707,303.370153,101.460300}
+graph_motion.pos.ETL_sensor_chuck_1_slot_3: {10.711499,355.817681,101.627350}
+graph_motion.pos.ETL_sensor_chuck_1_slot_4: {82.758870,355.604774,101.441500}
+graph_motion.pos.ETL_sensor_chuck_1_slot_5: {10.738547,407.933061,101.586950}
+graph_motion.pos.ETL_sensor_chuck_1_slot_6: {82.794142,407.755356,101.454800}
+graph_motion.pos.ETL_sensor_chuck_1_slot_7: {10.877075,460.117767,101.641950}
+graph_motion.pos.ETL_sensor_chuck_1_slot_8: {82.789419,459.920565,101.461300}
+
+graph_motion.pos.ETL_etroc_chuck_1_slot_1:{12.429000,304.698000,100.914500}
+graph_motion.pos.ETL_etroc_chuck_1_slot_2:{82.870000,304.016000,100.835050}
+graph_motion.pos.ETL_etroc_chuck_1_slot_2R:{102.886000,304.018000,100.846950}
+graph_motion.pos.ETL_etroc_chuck_1_slot_3:{12.613000,356.808000,100.874350}
+graph_motion.pos.ETL_etroc_chuck_1_slot_4:{82.899000,356.202000,100.810750}
+graph_motion.pos.ETL_etroc_chuck_1_slot_4R:{102.910000,356.170000,100.796850}
+graph_motion.pos.ETL_etroc_chuck_1_slot_5:{12.537000,409.046000,100.831600}
+graph_motion.pos.ETL_etroc_chuck_1_slot_6:{82.948000,408.323000,100.847000}
+graph_motion.pos.ETL_etroc_chuck_1_slot_6R:{102.949000,408.323000,100.787000}
+graph_motion.pos.ETL_etroc_chuck_1_slot_7:{12.548000,461.275000,100.899000}
+graph_motion.pos.ETL_etroc_chuck_1_slot_8:{82.968000,460.587000,100.846850}
+graph_motion.pos.ETL_etroc_chuck_1_slot_8R:{102.956000,460.501000,100.822300}
+
+graph_motion.pos.ETL_etroc_chuck_1_slot_1_tr:{31.233000,304.000000,101.160500}
+graph_motion.pos.ETL_etroc_chuck_1_slot_2_tr:{81.622000,322.126000,101.141650}
+graph_motion.pos.ETL_etroc_chuck_1_slot_3_tr:{31.308000,356.093000,101.195350}
+graph_motion.pos.ETL_etroc_chuck_1_slot_4_tr:{81.661000,374.228000,101.157200}
+graph_motion.pos.ETL_etroc_chuck_1_slot_5_tr:{31.339000,408.348000,101.207600}
+graph_motion.pos.ETL_etroc_chuck_1_slot_6_tr:{81.707000,426.466000,101.149650}
+graph_motion.pos.ETL_etroc_chuck_1_slot_7_tr:{31.333000,460.522000,101.190000}
+graph_motion.pos.ETL_etroc_chuck_1_slot_8_tr:{81.726000,478.615000,101.147850}
+
+graph_motion.pos.ETL_etroc_bplate_1_chip_1_br:{50.905000,74.281000,95.421800}
+graph_motion.pos.ETL_etroc_bplate_1_chip_2_br:{54.403000,56.053000,95.469800}
+graph_motion.pos.ETL_etroc_bplate_1_chip_3_br:{50.911000,95.687000,95.496800}
+graph_motion.pos.ETL_etroc_bplate_1_chip_4_br:{54.394000,77.453000,95.442800}
+graph_motion.pos.ETL_etroc_bplate_2_chip_1_br:{50.762000,126.141000,95.496800}
+graph_motion.pos.ETL_etroc_bplate_2_chip_2_br:{54.259000,107.906000,95.534800}
+graph_motion.pos.ETL_etroc_bplate_2_chip_3_br:{50.764000,147.565000,95.556800}
+graph_motion.pos.ETL_etroc_bplate_2_chip_4_br:{54.257000,129.317000,95.517800}
+graph_motion.pos.ETL_etroc_bplate_3_chip_1_br:{50.707000,177.970000,95.536800}
+graph_motion.pos.ETL_etroc_bplate_3_chip_2_br:{54.198000,159.750000,95.479800}
+graph_motion.pos.ETL_etroc_bplate_3_chip_3_br:{50.704000,199.374000,95.566800}
+graph_motion.pos.ETL_etroc_bplate_3_chip_4_br:{54.185000,181.153000,95.522800}
+graph_motion.pos.ETL_etroc_bplate_4_chip_1_br:{50.683000,229.766000,95.611800}
+graph_motion.pos.ETL_etroc_bplate_4_chip_2_br:{54.182000,211.543000,95.669800}
+graph_motion.pos.ETL_etroc_bplate_4_chip_3_br:{50.727000,251.203000,95.606750}
+graph_motion.pos.ETL_etroc_bplate_4_chip_4_br:{54.177000,232.952000,95.632800}
+
+graph_motion.pos.ETL_combo_chuck_1_slot_1: {12.393617,303.560446,101.210000}
+graph_motion.pos.ETL_combo_chuck_1_slot_2: {81.114707,303.370153,100.960300}
+graph_motion.pos.ETL_combo_chuck_1_slot_3: {12.411499,355.817681,101.227350}
+graph_motion.pos.ETL_combo_chuck_1_slot_4: {81.058870,355.604774,100.941500}
+graph_motion.pos.ETL_combo_chuck_1_slot_5: {12.438547,407.933061,101.286950}
+graph_motion.pos.ETL_combo_chuck_1_slot_6: {81.094142,407.755356,100.954800}
+graph_motion.pos.ETL_combo_chuck_1_slot_7: {12.577075,460.117767,101.241950}
+graph_motion.pos.ETL_combo_chuck_1_slot_8: {81.089419,459.920565,100.961300}
+
+# must be 2mm above tool in z
+{306.295000,76.520000,26.098200}
+graph_motion.pos.tool_rack_pos_0_in: {305.876000,26.970000,24.000000} # update me
+graph_motion.pos.tool_rack_pos_0_out: {305.876000,166.970000,24.000000} # update me
+
+graph_motion.pos.tool_rack_pos_1_in: {402.566000,27.002000,24.000000} # update me
+graph_motion.pos.tool_rack_pos_1_out: {402.566000,167.002000,24.000000} # update me
+
+#graph_motion.edge.LABEL1.LABEL2 True/False
+
+# motion edges to baseplates
+graph_motion.edge.home.ETL_baseplate_chuck_1_slot_1: True
+graph_motion.edge.ETL_baseplate_chuck_1_slot_1.ETL_baseplate_chuck_1_slot_2: True
+graph_motion.edge.ETL_baseplate_chuck_1_slot_2.ETL_baseplate_chuck_1_slot_3: True
+graph_motion.edge.ETL_baseplate_chuck_1_slot_3.ETL_baseplate_chuck_1_slot_4: True
+
+# motion edges to tool racks
+graph_motion.edge.home.tool_rack_pos_0_out: True
+graph_motion.edge.home.tool_rack_pos_1_out: True
+graph_motion.edge.tool_rack_pos_0_out.tool_rack_pos_0_in:   True
+graph_motion.edge.tool_rack_pos_1_out.tool_rack_pos_1_in:   True
+#graph_motion.edge.tool_rack_pos_0_out.tool_rack_pos_1_in:   True
+#graph_motion.edge.tool_rack_pos_1_out.tool_rack_pos_0_in:   True
+
+# motion edges to sensors/etrocs
+graph_motion.edge.home.ETL_sensor_chuck_1_slot_1: True
+graph_motion.edge.ETL_baseplate_chuck_1_slot_1.ETL_sensor_chuck_1_slot_1: True
+graph_motion.edge.ETL_baseplate_chuck_1_slot_2.ETL_sensor_chuck_1_slot_1: True
+graph_motion.edge.ETL_baseplate_chuck_1_slot_3.ETL_sensor_chuck_1_slot_1: True
+graph_motion.edge.ETL_baseplate_chuck_1_slot_4.ETL_sensor_chuck_1_slot_1: True
+graph_motion.edge.ETL_sensor_chuck_1_slot_1.ETL_sensor_chuck_1_slot_2: True
+graph_motion.edge.ETL_sensor_chuck_1_slot_2.ETL_sensor_chuck_1_slot_3: True
+graph_motion.edge.ETL_sensor_chuck_1_slot_3.ETL_sensor_chuck_1_slot_4: True
+graph_motion.edge.ETL_sensor_chuck_1_slot_4.ETL_sensor_chuck_1_slot_5: True
+graph_motion.edge.ETL_sensor_chuck_1_slot_5.ETL_sensor_chuck_1_slot_6: True
+graph_motion.edge.ETL_sensor_chuck_1_slot_6.ETL_sensor_chuck_1_slot_7: True
+graph_motion.edge.ETL_sensor_chuck_1_slot_7.ETL_sensor_chuck_1_slot_8: True
+
+graph_motion.edge.ETL_sensor_chuck_1_slot_1.tool_rack_pos_0_out: True
+graph_motion.edge.ETL_sensor_chuck_1_slot_2.tool_rack_pos_0_out: True
+graph_motion.edge.ETL_sensor_chuck_1_slot_3.tool_rack_pos_0_out: True
+graph_motion.edge.ETL_sensor_chuck_1_slot_4.tool_rack_pos_0_out: True
+graph_motion.edge.ETL_sensor_chuck_1_slot_5.tool_rack_pos_0_out: True
+graph_motion.edge.ETL_sensor_chuck_1_slot_6.tool_rack_pos_0_out: True
+graph_motion.edge.ETL_sensor_chuck_1_slot_7.tool_rack_pos_0_out: True
+graph_motion.edge.ETL_sensor_chuck_1_slot_8.tool_rack_pos_0_out: True
+
+graph_motion.edge.ETL_etroc_chuck_1_slot_1_tr.tool_rack_pos_0_out: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_2_tr.tool_rack_pos_0_out: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_3_tr.tool_rack_pos_0_out: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_4_tr.tool_rack_pos_0_out: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_5_tr.tool_rack_pos_0_out: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_6_tr.tool_rack_pos_0_out: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_7_tr.tool_rack_pos_0_out: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_8_tr.tool_rack_pos_0_out: True
+
+graph_motion.edge.home.ETL_etroc_chuck_1_slot_1: True
+graph_motion.edge.ETL_baseplate_chuck_1_slot_1.ETL_etroc_chuck_1_slot_1: True
+graph_motion.edge.ETL_baseplate_chuck_1_slot_2.ETL_etroc_chuck_1_slot_1: True
+graph_motion.edge.ETL_baseplate_chuck_1_slot_3.ETL_etroc_chuck_1_slot_1: True
+graph_motion.edge.ETL_baseplate_chuck_1_slot_4.ETL_etroc_chuck_1_slot_1: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_1.ETL_etroc_chuck_1_slot_2: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_1.ETL_etroc_chuck_1_slot_2R: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_1.ETL_etroc_chuck_1_slot_3: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_2.ETL_etroc_chuck_1_slot_3: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_2R.ETL_etroc_chuck_1_slot_3: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_2R.ETL_etroc_chuck_1_slot_4R: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_3.ETL_etroc_chuck_1_slot_4: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_3.ETL_etroc_chuck_1_slot_4R: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_3.ETL_etroc_chuck_1_slot_5: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_4.ETL_etroc_chuck_1_slot_5: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_4R.ETL_etroc_chuck_1_slot_5: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_4R.ETL_etroc_chuck_1_slot_6R: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_5.ETL_etroc_chuck_1_slot_6: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_5.ETL_etroc_chuck_1_slot_6R: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_5.ETL_etroc_chuck_1_slot_7: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_6.ETL_etroc_chuck_1_slot_7: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_6R.ETL_etroc_chuck_1_slot_7: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_6R.ETL_etroc_chuck_1_slot_8R: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_7.ETL_etroc_chuck_1_slot_8: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_7.ETL_etroc_chuck_1_slot_8R: True
+
+graph_motion.edge.home.ETL_etroc_chuck_1_slot_1_tr: True
+graph_motion.edge.ETL_baseplate_chuck_1_slot_1.ETL_etroc_chuck_1_slot_1_tr: True
+graph_motion.edge.ETL_baseplate_chuck_1_slot_2.ETL_etroc_chuck_1_slot_1_tr: True
+graph_motion.edge.ETL_baseplate_chuck_1_slot_3.ETL_etroc_chuck_1_slot_1_tr: True
+graph_motion.edge.ETL_baseplate_chuck_1_slot_4.ETL_etroc_chuck_1_slot_1_tr: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_1_tr.ETL_etroc_chuck_1_slot_2_tr: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_1_tr.ETL_etroc_chuck_1_slot_3_tr: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_2_tr.ETL_etroc_chuck_1_slot_3_tr: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_2_tr.ETL_etroc_chuck_1_slot_4_tr: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_3_tr.ETL_etroc_chuck_1_slot_4_tr: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_3_tr.ETL_etroc_chuck_1_slot_5_tr: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_4_tr.ETL_etroc_chuck_1_slot_5_tr: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_4_tr.ETL_etroc_chuck_1_slot_6_tr: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_5_tr.ETL_etroc_chuck_1_slot_6_tr: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_5_tr.ETL_etroc_chuck_1_slot_7_tr: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_6_tr.ETL_etroc_chuck_1_slot_7_tr: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_6_tr.ETL_etroc_chuck_1_slot_8_tr: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_7_tr.ETL_etroc_chuck_1_slot_8_tr: True
+
+graph_motion.edge.home.ETL_etroc_bplate_1_chip_1_br: True
+graph_motion.edge.ETL_baseplate_chuck_1_slot_1.ETL_etroc_bplate_1_chip_3_br: True
+graph_motion.edge.ETL_baseplate_chuck_1_slot_2.ETL_etroc_bplate_2_chip_3_br: True
+graph_motion.edge.ETL_baseplate_chuck_1_slot_3.ETL_etroc_bplate_3_chip_3_br: True
+graph_motion.edge.ETL_baseplate_chuck_1_slot_4.ETL_etroc_bplate_4_chip_3_br: True
+graph_motion.edge.ETL_etroc_bplate_1_chip_4_br.ETL_baseplate_chuck_1_slot_2: True
+graph_motion.edge.ETL_etroc_bplate_2_chip_4_br.ETL_baseplate_chuck_1_slot_3: True
+graph_motion.edge.ETL_etroc_bplate_3_chip_4_br.ETL_baseplate_chuck_1_slot_4: True
+graph_motion.edge.ETL_etroc_bplate_1_chip_1_br.ETL_etroc_bplate_1_chip_3_br: True
+graph_motion.edge.ETL_etroc_bplate_1_chip_1_br.ETL_etroc_bplate_1_chip_2_br: True
+graph_motion.edge.ETL_etroc_bplate_1_chip_2_br.ETL_etroc_bplate_1_chip_4_br: True
+graph_motion.edge.ETL_etroc_bplate_1_chip_4_br.ETL_baseplate_chuck_1_slot_1: True
+graph_motion.edge.ETL_etroc_bplate_2_chip_1_br.ETL_etroc_bplate_2_chip_3_br: True
+graph_motion.edge.ETL_etroc_bplate_2_chip_1_br.ETL_etroc_bplate_2_chip_2_br: True
+graph_motion.edge.ETL_etroc_bplate_2_chip_2_br.ETL_etroc_bplate_2_chip_4_br: True
+graph_motion.edge.ETL_etroc_bplate_3_chip_1_br.ETL_etroc_bplate_3_chip_3_br: True
+graph_motion.edge.ETL_etroc_bplate_3_chip_1_br.ETL_etroc_bplate_3_chip_2_br: True
+graph_motion.edge.ETL_etroc_bplate_3_chip_2_br.ETL_etroc_bplate_3_chip_4_br: True
+graph_motion.edge.ETL_etroc_bplate_4_chip_1_br.ETL_etroc_bplate_4_chip_3_br: True
+graph_motion.edge.ETL_etroc_bplate_4_chip_1_br.ETL_etroc_bplate_4_chip_2_br: True
+graph_motion.edge.ETL_etroc_bplate_4_chip_2_br.ETL_etroc_bplate_4_chip_4_br: True
+graph_motion.edge.ETL_etroc_bplate_4_chip_4_br.ETL_baseplate_chuck_1_slot_1: True
+
+graph_motion.edge.ETL_etroc_chuck_1_slot_1.ETL_sensor_chuck_1_slot_2: True
+graph_motion.edge.ETL_sensor_chuck_1_slot_2.ETL_etroc_chuck_1_slot_3: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_3.ETL_sensor_chuck_1_slot_4: True
+graph_motion.edge.ETL_sensor_chuck_1_slot_4.ETL_etroc_chuck_1_slot_5: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_5.ETL_sensor_chuck_1_slot_6: True
+graph_motion.edge.ETL_sensor_chuck_1_slot_6.ETL_etroc_chuck_1_slot_7: True
+graph_motion.edge.ETL_etroc_chuck_1_slot_7.ETL_sensor_chuck_1_slot_8: True
+
+graph_motion.edge.ETL_baseplate_chuck_1_slot_1.ETL_combo_chuck_1_slot_1: True
+graph_motion.edge.ETL_combo_chuck_1_slot_1.ETL_combo_chuck_1_slot_2: True
+graph_motion.edge.ETL_combo_chuck_1_slot_2.ETL_combo_chuck_1_slot_3: True
+graph_motion.edge.ETL_combo_chuck_1_slot_3.ETL_combo_chuck_1_slot_4: True
+graph_motion.edge.ETL_combo_chuck_1_slot_4.ETL_combo_chuck_1_slot_5: True
+graph_motion.edge.ETL_combo_chuck_1_slot_4.tool_rack_pos_0_out: True
+graph_motion.edge.ETL_combo_chuck_1_slot_5.ETL_combo_chuck_1_slot_6: True
+graph_motion.edge.ETL_combo_chuck_1_slot_6.ETL_combo_chuck_1_slot_7: True
+graph_motion.edge.ETL_combo_chuck_1_slot_7.ETL_combo_chuck_1_slot_8: True
+
+
+#================================================
+#====== Potting procedure parameters
+#================================================
+# The curing parameters are used to adjust the speed of the needle to
+# compensate for the increasing viscosity of the encapsulant as time passes.
+# v = v_nom * (1 - A*t^2 - B*t)
+# For depositing a dot instead of a line, this value scales how long the 
+# dispenser is active
+potting.sylgard.curing_param_a: 4e-9
+potting.sylgard.curing_param_b: 2e-5
+potting.sylgard.speed_nominal: 0.5 # mm/s
+potting.sylgard.time_nominal: 2.0  # s
+
+# The time delay between turning on the dispenser and beginning motion
+potting.sylgard.turn_on_time: 0.5
+# The amount of time to preemptively turn off the dispenser before motion ends
+potting.sylgard.turn_off_time: 0.1
+
+# Nominal distance between the tip of the needle and the surface during
+# encapsulation.
+potting.sylgard.tip_height: 0.180
+
+# Height of the needle as it moves between pot-lines. Must be high enough to clear
+# any obstacles on the module.
+potting.sylgard.safe_height_offset: 5 # mm
+
+#==============================================
+#======== Light Intensity Control
+#==============================================
+light.gantryhead.control: minidaq #npaq
+light.gantryhead.hardware_address: cDAQ1Mod2/ao0

@@ -1,0 +1,90 @@
+SETVAC chuck 1
+
+HOME
+
+SETLIGHT 20
+COPY $speed 20
+
+# SOME CONSTANTS
+COPY $baseplate_brCor {45.321,281.345,77.320}
+COPY $first_plexi_brCor {93.275,246.839,77.240}
+COPY $second_plexi_brCor {141.763,246.679,77.240}
+
+COPY $plexi_pickup_offset {10.19,58.17,0}
+COPY $first_plexi_place_offset {9.565,29.295,0}
+COPY $second_plexi_place_offset {9.565,52.845,0}
+
+COPY $first_plexi_pickup {0,0,0}
+COPY $second_plexi_pickup {0,0,0}
+COPY $first_plexi_place {0,0,0}
+COPY $second_plexi_place {0,0,0}
+
+MOVETO $baseplate_brCor $speed
+# allow mpg control, open video and have user center camera on br corner of baseplate
+MPGON
+VIDEO
+MPGOFF
+GETPOS $baseplate_brCor
+
+MOVETO $first_plexi_brCor $speed
+# allow mpg control, open video and have user center camera on br corner of plexiglass
+MPGON
+VIDEO
+MPGOFF
+GETPOS $first_plexi_brCor
+
+MOVETO $second_plexi_brCor $speed
+# allow mpg control, open video and have user center camera on br corner of plexiglass
+MPGON
+VIDEO
+MPGOFF
+GETPOS $second_plexi_brCor
+
+LOADTOOL picker_tool
+
+ADD $first_plexi_pickup $first_plexi_brCor $plexi_pickup_offset
+COPY $first_plexi_pickup.z 0
+print %v $first_plexi_pickup
+
+ADD $second_plexi_pickup $second_plexi_brCor $plexi_pickup_offset
+COPY $second_plexi_pickup.z 0
+print %v $second_plexi_pickup
+
+ADD $first_plexi_place $baseplate_brCor $first_plexi_place_offset
+COPY $first_plexi_place.z 0
+
+ADD $second_plexi_place $baseplate_brCor $second_plexi_place_offset
+COPY $second_plexi_place.z 0
+
+MOVETO $first_plexi_pickup $speed
+MOVEREL {0,0,41.7} $speed
+WAIT 500
+SETVAC gantry_head_inner 1
+WAIT 500
+MOVEREL {0,0,-20} $speed
+
+MOVETO $first_plexi_place $speed
+MOVEREL {0,0,40.7} $speed
+WAIT 500
+SETVAC gantry_head_inner 0
+WAIT 500
+MOVEREL {0,0,-40.7} $speed
+
+MOVETO $second_plexi_pickup $speed
+MOVEREL {0,0,41.7} $speed
+WAIT 500
+SETVAC gantry_head_inner 1
+WAIT 500
+MOVEREL {0,0,-20} $speed
+
+MOVETO $second_plexi_place $speed
+MOVEREL {0,0,40.7} $speed
+WAIT 500
+SETVAC gantry_head_inner 0
+WAIT 500
+MOVEREL {0,0,-40.7} $speed
+
+UNLOADTOOL
+SETVAC chuck 0
+
+PRINT "DONE"

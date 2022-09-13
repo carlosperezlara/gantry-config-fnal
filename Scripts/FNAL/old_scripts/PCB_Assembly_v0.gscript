@@ -1,0 +1,91 @@
+SETVAC chuck 1
+
+HOME
+
+# SETLIGHT 20
+COPY $speed 20
+
+# SOME CONSTANTS
+COPY $baseplate_brFid {44.191000,279.524000,93.198400}
+COPY $top_pcb_brFid {349.013000,235.052000,83.253700}
+COPY $bottom_pcb_brFid {397.537000,234.796000,83.253700}
+
+COPY $pcb_pickup_offset {-18.583,62.976,0}
+
+COPY $top_pcb_place_offset {-15.747,35.47,0}
+COPY $bottom_pcb_place_offset {-15.747,60.110,0}
+
+COPY $top_pcb_pickup {0,0,0}
+COPY $botomt_pcb_pickup {0,0,0}
+COPY $top_pcb_place {0,0,0}
+COPY $bottom_pcb_place {0,0,0}
+
+MOVETO $baseplate_brFid $speed
+# allow mpg control, open video and have user center camera on br corner of baseplate
+MPGON
+VIDEO
+MPGOFF
+GETPOS $baseplate_brFid
+
+MOVETO $top_pcb_brFid $speed
+# allow mpg control, open video and have user center camera on br corner of plexiglass
+MPGON
+VIDEO
+MPGOFF
+GETPOS $top_pcb_brFid
+
+MOVETO $bottom_pcb_brFid $speed
+# allow mpg control, open video and have user center camera on br corner of plexiglass
+MPGON
+VIDEO
+MPGOFF
+GETPOS $bottom_pcb_brFid
+
+LOADTOOL picker_tool
+
+ADD $top_pcb_pickup $top_pcb_brFid $pcb_pickup_offset
+COPY $top_pcb_pickup.z 0
+print %v $top_pcb_pickup
+
+ADD $bottom_pcb_pickup $bottom_pcb_brFid $pcb_pickup_offset
+COPY $bottom_pcb_pickup.z 0
+print %v $bottom_pcb_pickup
+
+ADD $top_pcb_place $baseplate_brFid $top_pcb_place_offset
+COPY $top_pcb_place.z 0
+
+ADD $bottom_pcb_place $baseplate_brFid $bottom_pcb_place_offset
+COPY $bottom_pcb_place.z 0
+
+MOVETO $top_pcb_pickup $speed
+MOVEREL {0,0,46.926} $speed
+WAIT 500
+SETVAC gantry_head_inner 1
+WAIT 500
+MOVEREL {0,0,-5} $speed
+
+MOVETO $top_pcb_place $speed
+MOVEREL {0,0,56.204} $speed
+WAIT 1000
+SETVAC gantry_head_inner 0
+WAIT 1000
+MOVEREL {0,0,-10} $speed
+
+MOVETO $bottom_pcb_pickup $speed
+MOVEREL {0,0,46.926} $speed
+WAIT 500
+SETVAC gantry_head_inner 1
+WAIT 500
+MOVEREL {0,0,-5} $speed
+
+MOVETO $bottom_pcb_place $speed
+MOVEREL {0,0,56.204} $speed
+WAIT 1000
+SETVAC gantry_head_inner 0
+WAIT 1000
+MOVEREL {0,0,-10} $speed
+
+UNLOADTOOL
+SETVAC chuck 0
+
+PRINT "DONE"

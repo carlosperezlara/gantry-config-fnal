@@ -1,0 +1,17 @@
+SETVAC sensor_1_chuck 0
+SETVAC sensor_2_chuck 0
+SETVAC sensor_3_chuck 0
+SETVAC sensor_4_chuck 0
+SETVAC sensor_5_chuck 0
+SETVAC sensor_6_chuck 0
+SETVAC sensor_7_chuck 0
+SETVAC sensor_8_chuck 0
+SETVAC baseplates_chuck 0
+SETVAC gantry_head_inner 0
+SETLIGHT 0
+MPGOFF
+CHOICEPOPUP $c "Wanna home?" "Yay" "Nay"
+GOTOIFN @CONTINUE $c
+HOME
+@CONTINUE
+END
