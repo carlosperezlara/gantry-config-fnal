@@ -8,15 +8,13 @@ camera.gantryhead.SerialNumberLow: 0x10305237
 camera.gantryhead.FOV-x: 1.132
 camera.gantryhead.FOV-y: 0.846
 
-dispenser.hardware_address: cDAQ1Mod1/port0/line31
-
 
 vacuum.gantry_head_outer: 16
 vacuum.gantry_head_inner: 17
 
-vacuum.stamps_chuck: 18
-vacuum.reservoir_chuck: 19
-vacuum.baseplates_chuck: 20
+vacuum.etl_chuck_2: 20
+vacuum.etl_chuck_3: 19
+vacuum.etl_chuck_4: 18
 vacuum.port_21: 21
 vacuum.port_22: 22
 vacuum.port_23: 23
@@ -27,24 +25,27 @@ vacuum.port_27: 27
 vacuum.port_28: 28
 vacuum.port_29: 29
 vacuum.port_30: 30
+vacuum.port_31: 31
 
 
-vacuum.sensor_1_chuck: 1
-vacuum.sensor_2_chuck: 0
-vacuum.sensor_3_chuck: 3
-vacuum.sensor_4_chuck: 2
-vacuum.sensor_5_chuck: 5
-vacuum.sensor_6_chuck: 4
-vacuum.sensor_7_chuck: 7
-vacuum.sensor_8_chuck: 6
-vacuum.sensor_9_chuck: 9
-vacuum.sensor_10_chuck: 8
-vacuum.sensor_11_chuck: 11
-vacuum.sensor_12_chuck: 10
-vacuum.sensor_13_chuck: 13
-vacuum.sensor_14_chuck: 12
-vacuum.sensor_15_chuck: 15
-vacuum.sensor_16_chuck: 14
+vacuum.etl_chuck_1_pos_1: 0
+vacuum.etl_chuck_1_pos_2: 2
+vacuum.etl_chuck_1_pos_3: 4
+vacuum.etl_chuck_1_pos_4: 6
+vacuum.etl_chuck_1_pos_5: 8
+vacuum.etl_chuck_1_pos_6: 10
+vacuum.etl_chuck_1_pos_7: 12
+vacuum.etl_chuck_1_pos_8: 14
+vacuum.etl_chuck_1_pos_9: 1
+vacuum.etl_chuck_1_pos_10: 3
+vacuum.etl_chuck_1_pos_11: 5
+vacuum.etl_chuck_1_pos_12: 7
+vacuum.etl_chuck_1_pos_13: 9
+vacuum.etl_chuck_1_pos_14: 11
+vacuum.etl_chuck_1_pos_15: 13
+vacuum.etl_chuck_1_pos_16: 15
+
+
 
 
 manifold.reset_on_start: false
@@ -79,8 +80,12 @@ manifold.port.27: cDAQ1Mod1/port0/line27
 manifold.port.28: cDAQ1Mod1/port0/line28
 manifold.port.29: cDAQ1Mod1/port0/line29
 manifold.port.30: cDAQ1Mod1/port0/line30
+manifold.port.31: cDAQ1Mod1/port0/line31
 
-tool_rack.0: picker_tool
+pickplace_rotation_height: 25 # mm
+invert_rotation: True
+
+tool_rack.0: etl_picker_tool
 tool_rack.1: grabber_tool
 tool_rack.2: None
 
@@ -138,12 +143,14 @@ geometry.ETL_Sensor_Green_PCB_Mockup.fid_dy: {0,18.30,0}
 
 geometry.camera_focused_to_object: {0,0,33}
 
-geometry.PICKER_TOOL.center_offset: {0,0,-50.7}  # Height of picker tool
+geometry.etl_picker_tool.center_offset: {0,0,50.2}  # Height of picker tool
 
 # The offset between the camera and the
 # center-of-rotation of the gantry head in x-y
 # and the bottom surface of the tool-holder in z
-geometry.tool_holder_offset: {-0.16,70.80,-23.55}
+#geometry.tool_holder_offset: {0.16,-70.80,-10.28}
+geometry.tool_holder_offset: {0.54,-69.73,-10.28}
+
 
 #================================================
 #====== Vision/Pattern Recognition parameters
@@ -218,7 +225,12 @@ vision.ETL_Sensor_Green_PCB_Mockup.aspectRatioMax: 1.1
 # point to point
 
 #graph_motion.pos.LABEL: {x,y,z}
-graph_motion.pos.home: {10,10,0}
+graph_motion.pos.home: {0,0,0}
+
+graph_motion.pos.etl_chuck_1: {100.000000,400.000000,0.000000}
+graph_motion.pos.etl_chuck_2: {100.000000,200.000000,0.000000}
+graph_motion.pos.etl_chuck_3: {400.000000,200.000000,0.000000}
+graph_motion.pos.etl_chuck_4: {400.000000,400.000000,0.000000}
 
 # Positions of the top left fiducial for each slot in each chuck
 
@@ -309,6 +321,19 @@ graph_motion.edge.tool_rack_pos_1_out.tool_rack_pos_1_in:   True
 #graph_motion.edge.tool_rack_pos_1_out.tool_rack_pos_0_in:   True
 
 # motion edges to sensors/etrocs
+graph_motion.edge.home.etl_chuck_1: True
+graph_motion.edge.home.etl_chuck_2: True
+graph_motion.edge.home.etl_chuck_3: True
+graph_motion.edge.home.etl_chuck_4: True
+graph_motion.edge.etl_chuck_1.etl_chuck_2: True
+graph_motion.edge.etl_chuck_1.etl_chuck_3: True
+graph_motion.edge.etl_chuck_1.etl_chuck_4: True
+graph_motion.edge.etl_chuck_2.etl_chuck_3: True
+graph_motion.edge.etl_chuck_2.etl_chuck_4: True
+graph_motion.edge.etl_chuck_3.etl_chuck_4: True
+
+
+
 graph_motion.edge.home.ETL_sensor_chuck_1_slot_1: True
 graph_motion.edge.ETL_baseplate_chuck_1_slot_1.ETL_sensor_chuck_1_slot_1: True
 graph_motion.edge.ETL_baseplate_chuck_1_slot_2.ETL_sensor_chuck_1_slot_1: True
