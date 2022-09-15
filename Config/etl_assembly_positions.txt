@@ -1,0 +1,46 @@
+# Load this file with the line:
+#
+# LOADCONFIG "" Scripts\Nebraska\ETL\assembly_positions.txt
+#
+
+#tr == 1, br == 2, bl == 3, tl == 4
+
+geometry.ETL_Sensor_PCB_Mockup.fid_tr: {9.64,-10.89,0}
+geometry.ETL_Sensor_PCB_Mockup.fid_tl: {-9.74,-10.89,0}
+geometry.ETL_Sensor_PCB_Mockup.fid_bl: {-9.74,-10.40,0}
+geometry.ETL_Sensor_PCB_Mockup.fid_br: {9.64,-10.40,0}
+
+geometry.ETL_mock_base.fid_tr: {27.25,-20.55,0}
+geometry.ETL_mock_base.fid_tl: {-27.25,-20.55,0}
+geometry.ETL_mock_base.fid_bl: {-27.25,20.55,0}
+geometry.ETL_mock_base.fid_br: {27.25,20.55,0}
+
+#Baseplate fiducials
+#bottom #completed for pos 1
+default.ETL_mock_base.2.1.pos: {26.368250,206.502250,87.458450}
+default.ETL_mock_base.2.1.rot: {-0.000224,-0.000767,0.705824,-0.708387}
+
+# Next 3 positions still need to be updated.
+default.ETL_mock_base.2.2.pos: {779.829269,422.009143,63.070000}
+default.ETL_mock_base.2.2.rot: {-0.000790,0.000552,-0.001191,0.999999}
+
+default.ETL_mock_base.2.3.pos: {779.746585,371.220502,63.076252}
+default.ETL_mock_base.2.3.rot: {-0.000091,0.000390,-0.000871,1.000000}
+
+default.ETL_mock_base.2.4.pos: {779.659403,320.324821,63.043748}
+default.ETL_mock_base.2.4.rot: {-0.000760,-0.000159,-0.002072,0.999998}
+
+
+#top (#updated)
+#ETROC fiducials
+default.ETL_Sensor_PCB_Mockup.1.5.pos: {38.373106,398.634893,101.992150}
+default.ETL_Sensor_PCB_Mockup.1.5.rot: {0.000000,0.000000,0.704915,-0.709292}
+
+default.ETL_Sensor_PCB_Mockup.1.6.pos: {95.652971,398.726414,101.800000}
+default.ETL_Sensor_PCB_Mockup.1.6.rot: {0.000000,0.000000,0.707325,0.706888}
+
+default.ETL_Sensor_PCB_Mockup.1.9.pos: {38.238991,423.349879,101.971382}
+default.ETL_Sensor_PCB_Mockup.1.9.rot: {-0.002753,0.000194,0.706341,-0.707866}
+
+default.ETL_Sensor_PCB_Mockup.1.10.pos: {95.606410,423.480580,101.559804}
+default.ETL_Sensor_PCB_Mockup.1.10.rot: {-0.004675,-0.007171,0.707836,0.706325}
