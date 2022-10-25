@@ -1,20 +1,67 @@
 #================================================
 #====== Hardware configuration
 #================================================
+#camera.gantryhead.CameraGroup: 1
+#camera.gantryhead.VendorName: UI348xML-M_4103627983
+#camera.gantryhead.SerialNumberHigh: 0x7339A254
+#camera.gantryhead.SerialNumberLow: 0x10305237
+#camera.gantryhead.FOV-x: 1.132
+#camera.gantryhead.FOV-y: 0.846
+
+# A set of entries is needed for each camera in the system. An minimum,
+# a "gantryhead" set of entries is required.
 camera.gantryhead.CameraGroup: 1
-camera.gantryhead.VendorName: UI348xML-M_4103627983
-camera.gantryhead.SerialNumberHigh: 0x7339A254
-camera.gantryhead.SerialNumberLow: 0x10305237
-camera.gantryhead.FOV-x: 1.132
-camera.gantryhead.FOV-y: 0.846
+camera.gantryhead.driver: ueye
+camera.gantryhead.serial_number: "4103627983"
+camera.gantryhead.FOV-x: 1.400
+camera.gantryhead.FOV-y: 1.048
+camera.gantryhead.horizontalMirror: False
+
+# The following 2 lines are for the case where the image coming from the camera
+# does *not* have the gantry's positive x-axis pointing to the right and positive
+# y-axis pointing down. If this is the case, first determine what counter-clockwise
+# rotation of the image will align the x-axis (options are 0, 90, 180, and 
+# 270 degrees). For example, if the gantry's positive x-axis points up in the image,
+# then a counter-clockwise rotation of 90 degrees will align the image's +x axis with
+# the gantry's +x axis.
+# After rotating the image to align the x-axis, the y-axis may 
+# be pointing in the wrong direction. In this case, set `invertY` to True.
+camera.gantryhead.axes.rotation: 0
+camera.gantryhead.axes.invertY: False
+
+light.gantryhead.control: npaq
+light.gantryhead.hardware_address: Y.0
+
+
 
 
 vacuum.gantry_head_outer: 16
 vacuum.gantry_head_inner: 17
 
-vacuum.etl_chuck_2: 20
-vacuum.etl_chuck_3: 19
-vacuum.etl_chuck_4: 18
+vacuum.etl_chuck_2: 30
+vacuum.etl_chuck_3: 28
+vacuum.etl_chuck_4: 26
+#vacuum.port_0: 0
+#vacuum.port_1: 1
+#vacuum.port_2: 2
+#vacuum.port_3: 3
+#vacuum.port_4: 4
+#vacuum.port_5: 5
+#vacuum.port_6: 6
+#vacuum.port_7: 7
+#vacuum.port_8: 8
+#vacuum.port_9: 9
+#vacuum.port_10: 10
+#vacuum.port_11: 11
+#vacuum.port_12: 12
+#vacuum.port_13: 13
+#vacuum.port_14: 14
+#vacuum.port_15: 15
+#vacuum.port_16: 16
+#vacuum.port_17: 17
+#vacuum.port_18: 18
+#vacuum.port_19: 19
+#vacuum.port_20: 20
 vacuum.port_21: 21
 vacuum.port_22: 22
 vacuum.port_23: 23
@@ -28,22 +75,22 @@ vacuum.port_30: 30
 vacuum.port_31: 31
 
 
-vacuum.etl_chuck_1_pos_1: 0
-vacuum.etl_chuck_1_pos_2: 2
-vacuum.etl_chuck_1_pos_3: 4
-vacuum.etl_chuck_1_pos_4: 6
-vacuum.etl_chuck_1_pos_5: 8
-vacuum.etl_chuck_1_pos_6: 10
-vacuum.etl_chuck_1_pos_7: 12
-vacuum.etl_chuck_1_pos_8: 14
-vacuum.etl_chuck_1_pos_9: 1
-vacuum.etl_chuck_1_pos_10: 3
-vacuum.etl_chuck_1_pos_11: 5
-vacuum.etl_chuck_1_pos_12: 7
-vacuum.etl_chuck_1_pos_13: 9
-vacuum.etl_chuck_1_pos_14: 11
-vacuum.etl_chuck_1_pos_15: 13
-vacuum.etl_chuck_1_pos_16: 15
+vacuum.etl_chuck_1_pos_1: 14
+vacuum.etl_chuck_1_pos_2: 12
+vacuum.etl_chuck_1_pos_3: 10
+vacuum.etl_chuck_1_pos_4: 8
+vacuum.etl_chuck_1_pos_5: 6
+vacuum.etl_chuck_1_pos_6: 4
+vacuum.etl_chuck_1_pos_7: 2
+vacuum.etl_chuck_1_pos_8: 0
+vacuum.etl_chuck_1_pos_9: 15
+vacuum.etl_chuck_1_pos_10: 13
+vacuum.etl_chuck_1_pos_11: 11
+vacuum.etl_chuck_1_pos_12: 9
+vacuum.etl_chuck_1_pos_13: 7
+vacuum.etl_chuck_1_pos_14: 5
+vacuum.etl_chuck_1_pos_15: 3
+vacuum.etl_chuck_1_pos_16: 1
 
 
 
@@ -158,7 +205,7 @@ geometry.tool_holder_offset: {0.54,-69.73,-10.28}
 
 vision.debug_enable: False
 vision.log_directory: C:\Users\Public\Documents\pixel-gantry-control\Logs
-vision.autofocus.step_size: 0.03 # mm
+vision.autofocus.step_size: 0.02 # mm
 vision.autofocus.delay: 10 # ms
 
 vision.ETL_Coverplate_PCB_Mockup.method: find_patches
@@ -225,12 +272,12 @@ vision.ETL_Sensor_Green_PCB_Mockup.aspectRatioMax: 1.1
 # point to point
 
 #graph_motion.pos.LABEL: {x,y,z}
-graph_motion.pos.home: {0,0,0}
+graph_motion.pos.home: {0.000000,0.000000,0.000000}
 
-graph_motion.pos.etl_chuck_1: {100.000000,400.000000,0.000000}
-graph_motion.pos.etl_chuck_2: {100.000000,200.000000,0.000000}
-graph_motion.pos.etl_chuck_3: {400.000000,200.000000,0.000000}
-graph_motion.pos.etl_chuck_4: {400.000000,400.000000,0.000000}
+graph_motion.pos.etl_chuck_1: {125.000000,410.000000,24.000000}
+graph_motion.pos.etl_chuck_2: {205.000000,105.000000,24.000000}
+graph_motion.pos.etl_chuck_3: {355.000000,105.000000,24.000000}
+graph_motion.pos.etl_chuck_4: {355.000000,405.000000,24.000000}
 
 # Positions of the top left fiducial for each slot in each chuck
 
@@ -296,13 +343,13 @@ graph_motion.pos.ETL_combo_chuck_1_slot_6: {81.094142,407.755356,100.954800}
 graph_motion.pos.ETL_combo_chuck_1_slot_7: {12.577075,460.117767,101.241950}
 graph_motion.pos.ETL_combo_chuck_1_slot_8: {81.089419,459.920565,100.961300}
 
-# must be 2mm above tool in z
+# must be 2mm above tool in z, out = in + 80 mm
 {306.295000,76.520000,26.098200}
-graph_motion.pos.tool_rack_pos_0_in: {305.876000,26.970000,24.000000} # update me
-graph_motion.pos.tool_rack_pos_0_out: {305.876000,166.970000,24.000000} # update me
+graph_motion.pos.tool_rack_pos_0_in: {55.244000,172.783000,24.050250} # update me
+graph_motion.pos.tool_rack_pos_0_out: {135.244000,172.783000,24.050250} # update me
 
-graph_motion.pos.tool_rack_pos_1_in: {402.566000,27.002000,24.000000} # update me
-graph_motion.pos.tool_rack_pos_1_out: {402.566000,167.002000,24.000000} # update me
+graph_motion.pos.tool_rack_pos_1_in: {55.236000,76.130000,24.000000} # update me
+graph_motion.pos.tool_rack_pos_1_out: {135.236000,76.130000,24.000000} # update me
 
 #graph_motion.edge.LABEL1.LABEL2 True/False
 
@@ -319,6 +366,15 @@ graph_motion.edge.tool_rack_pos_0_out.tool_rack_pos_0_in:   True
 graph_motion.edge.tool_rack_pos_1_out.tool_rack_pos_1_in:   True
 #graph_motion.edge.tool_rack_pos_0_out.tool_rack_pos_1_in:   True
 #graph_motion.edge.tool_rack_pos_1_out.tool_rack_pos_0_in:   True
+
+graph_motion.edge.etl_chuck_1.tool_rack_pos_0_out: True
+graph_motion.edge.etl_chuck_1.tool_rack_pos_1_out: True
+graph_motion.edge.etl_chuck_2.tool_rack_pos_0_out: True
+graph_motion.edge.etl_chuck_2.tool_rack_pos_1_out: True
+graph_motion.edge.etl_chuck_3.tool_rack_pos_0_out: True
+graph_motion.edge.etl_chuck_3.tool_rack_pos_1_out: True
+graph_motion.edge.etl_chuck_4.tool_rack_pos_0_out: True
+graph_motion.edge.etl_chuck_4.tool_rack_pos_1_out: True
 
 # motion edges to sensors/etrocs
 graph_motion.edge.home.etl_chuck_1: True
