@@ -195,7 +195,7 @@ END
     QUAT2EULER $phi $_ $_ $rot
     RETURN $pos $phi
 
-@L2G_ACQUIREFIDUCIAL(pos_default,rot_default,tr_local,tl_local,bl_local,bl_local)
+@L2G_ACQUIREFIDUCIAL(pos_default,rot_default,tr_local,tl_local,bl_local,br_local)
     # Arguments:
     #  $pos - center
     #  $rot - center
