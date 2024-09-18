@@ -1,0 +1,124 @@
+# Load this file with the line:
+#
+# LOADCONFIG "" Config\ETL\Throughput_Assy_Configuration.txt
+#
+# This file has the site-specific configuration data for the scripts in
+# ETLModules/Throughput
+
+#chuck numbers
+# Bottom is the chuck that holds the assembly plate
+chuck_number.bottom: 3
+# Top is the 16-pocket chuck that stages the ETROC+LGAD subassemblies as well as the baseplates
+chuck_number.top: 4
+
+# -0.5
+
+# Light levels
+default.light_low_int: 20 #35 for pcb dummies
+default.light_high_int: 60
+
+# Chuck 1
+default.Module_PCB.1.1.pos: {69.048511,157.477374,30.648509}
+default.Module_PCB.1.1.rot: {-0.000341,0.000558,-0.706212,0.708000}
+
+default.Module_PCB.1.2.pos: {69.006508,208.246373,30.643509}
+default.Module_PCB.1.2.rot: {-0.000550,0.000586,-0.706037,0.708175}
+
+default.Module_PCB.1.3.pos: {68.942503,259.061371,30.632509}
+default.Module_PCB.1.3.rot: {-0.000548,0.000403,-0.706455,0.707757}
+
+default.Module_PCB.1.4.pos: {68.910497,309.869370,30.608509}
+default.Module_PCB.1.4.rot: {-0.000584,0.000367,-0.706190,0.708022}
+
+# Chuck 2
+default.Module_PCB.2.1.pos: {228.586685,157.646645,31.992011}
+default.Module_PCB.2.1.rot: {-0.000334,0.000407,-0.706492,0.707721}
+
+default.Module_PCB.2.2.pos: {228.529649,208.468898,32.001012}
+default.Module_PCB.2.2.rot: {-0.000348,0.000312,-0.706274,0.707938}
+
+default.Module_PCB.2.3.pos: {228.488682,259.270903,31.976011}
+default.Module_PCB.2.3.rot: {0.000567,-0.000278,0.706250,-0.707962}
+
+default.Module_PCB.2.4.pos: {228.433708,310.092910,31.980011}
+default.Module_PCB.2.4.rot: {-0.000372,0.000951,-0.706205,0.708007}
+
+# Chuck 3
+default.Module_PCB.3.1.pos: {373.291949,157.908388,31.900053}
+default.Module_PCB.3.1.rot: {-0.000288,-0.000290,0.705055,-0.709152}
+
+default.Module_PCB.3.2.pos: {373.099938,208.702387,31.904053}
+default.Module_PCB.3.2.rot: {-0.000019,-0.000125,-0.705235,0.708974}
+
+default.Module_PCB.3.3.pos: {372.885940,259.505397,31.912053}
+default.Module_PCB.3.3.rot: {-0.000034,0.000178,0.705291,-0.708918}
+
+default.Module_PCB.3.4.pos: {372.648941,310.294392,31.875055}
+default.Module_PCB.3.4.rot: {-0.000349,-0.001493,-0.704953,0.709252}
+
+
+
+#ETROC Center Positions
+default.ETROC.4.1.pos: {55.732116,492.640963,46.073000}
+default.ETROC.4.2.pos: {113.074572,492.967859,45.915998}
+default.ETROC.4.3.pos: {170.412573,493.250694,45.889995}
+default.ETROC.4.4.pos: {227.725583,493.550694,45.888993}
+default.ETROC.4.5.pos: {55.616103,526.622044,46.055999}
+default.ETROC.4.6.pos: {112.968564,526.942877,45.917996}
+default.ETROC.4.7.pos: {170.314578,527.218692,45.879993}
+default.ETROC.4.8.pos: {227.603593,527.532693,45.853993}
+default.ETROC.4.9.pos: {54.020121,551.367844,46.034999}
+default.ETROC.4.10.pos: {111.362074,551.664063,45.895996}
+default.ETROC.4.11.pos: {168.698583,551.921691,45.851993}
+default.ETROC.4.12.pos: {226.024597,552.283684,45.823973}
+default.ETROC.4.13.pos: {53.906266,585.346846,45.957001}
+default.ETROC.4.14.pos: {111.313584,585.679059,45.860995}
+default.ETROC.4.15.pos: {168.555580,585.943697,45.826992}
+default.ETROC.4.16.pos: {225.885588,586.258693,45.768941}
+#etroc rotations
+#pi/2 rotation (# Ideal yaw = pi/2, pitch = 0, roll = 0)
+default.ETROC.4.1.rot: {-0.001082,-0.001309,-0.709000,-0.705206}
+default.ETROC.4.2.rot: {-0.000579,-0.000581,-0.708616,-0.705594}
+default.ETROC.4.3.rot: {0.000382,-0.000958,-0.708669,-0.705540}
+default.ETROC.4.4.rot: {-0.000209,-0.000732,-0.709202,-0.705005}
+default.ETROC.4.5.rot: {-0.001589,-0.001745,-0.709125,-0.705079}
+default.ETROC.4.6.rot: {-0.000647,-0.000947,-0.708561,-0.705649}
+default.ETROC.4.7.rot: {-0.000130,-0.001172,-0.708595,-0.705614}
+default.ETROC.4.8.rot: {-0.000448,0.000445,0.709090,0.705118}
+#different rotation because staged differently! Natural position is this position
+#-pi/2 rotation (Ideal yaw = -pi/2, pitch = 0, roll = 0)
+default.ETROC.4.9.rot: {-0.001602,0.001224,-0.704932,0.709272}
+default.ETROC.4.10.rot: {-0.001161,0.001159,-0.705676,0.708533}
+default.ETROC.4.11.rot: {-0.001026,0.000131,-0.705300,0.708909}
+default.ETROC.4.12.rot: {0.001026,-0.000130,0.705080,-0.709127}
+default.ETROC.4.13.rot: {-0.001961,0.001881,-0.705131,0.709071}
+default.ETROC.4.14.rot: {-0.001241,0.000570,-0.705870,0.708340}
+default.ETROC.4.15.rot: {-0.001320,0.000053,-0.705320,0.708888}
+default.ETROC.4.16.rot: {-0.000517,-0.000302,-0.705115,0.709092}
+
+
+#LGAD positons
+default.LGAD.4.13.pos: {0,0,0}
+default.LGAD.4.14.pos: {0,0,0}
+default.LGAD.4.15.pos: {0,0,0}
+default.LGAD.4.16.pos: {0,0,0}
+
+default.LGAD.4.13.rot: {0,0,0,0}
+default.LGAD.4.14.rot: {0,0,0,0}
+default.LGAD.4.15.rot: {0,0,0,0}
+default.LGAD.4.16.rot: {0,0,0,0} 
+
+#might have put in wrong angle? if so flip signs for all the 16 ones, otherwise im confident
+
+#top AlN positions #all of these are probably wrong??
+default.BP.4.5.pos: {66.539359,549.983394,44.404442}
+default.BP.4.5.rot: {-0.001075,0.000457,0.000665,0.999999}
+
+default.BP.4.6.pos: {120.523959,550.118486,44.359733}
+default.BP.4.6.rot: {-0.000748,0.000165,0.000758,0.999999}
+
+default.BP.4.7.pos: {174.511957,550.230580,44.318055}
+default.BP.4.7.rot: {-0.001209,0.000844,0.000861,0.999999}
+
+default.BP.4.8.pos: {228.529238,550.377362,44.260150}
+default.BP.4.8.rot: {-0.001278,0.000749,0.000644,0.999999}
