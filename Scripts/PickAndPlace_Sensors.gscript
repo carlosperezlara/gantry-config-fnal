@@ -179,13 +179,11 @@ END
     QUAT2EULER $phi $_ $_ $rot
     RETURN $pos $phi
 
-@SURVEY_LGAD(chuck_num,pos_num)
-# Arguments: $chuck_num
-#            $pos_num
+@SURVEY_LGAD(pos_default,rot_default)
+# Arguments: $pos
+#            $rot
 # Returns:   $pos - center
 #            $rot - rotation in x-y plane
-    COPY $pos_default &default.LGAD.{$chuck_num}.{$pos_num}.pos
-    COPY $rot_default &default.LGAD.{$chuck_num}.{$pos_num}.rot
     COPY $tr_local &geometry.LGAD.fid_tr
     COPY $tl_local &geometry.LGAD.fid_tl
     COPY $bl_local &geometry.LGAD.fid_bl
