@@ -1,46 +1,120 @@
 # Load this file with the line:
 #
-# LOADCONFIG "" Scripts\Nebraska\ETL\assembly_positions.txt
+# LOADCONFIG "" Config\etl_assembly_positions.txt
 #
 
 #tr == 1, br == 2, bl == 3, tl == 4
 
+geometry.ETL_Sensor_PCB_Mockup.thickness: {0,0,0.55}
+geometry.ETL_Sensor_PCB_Mockup.adhesive_thickness: {0,0,0.076}
 geometry.ETL_Sensor_PCB_Mockup.fid_tr: {9.64,-10.89,0}
 geometry.ETL_Sensor_PCB_Mockup.fid_tl: {-9.74,-10.89,0}
 geometry.ETL_Sensor_PCB_Mockup.fid_bl: {-9.74,-10.40,0}
 geometry.ETL_Sensor_PCB_Mockup.fid_br: {9.64,-10.40,0}
 
-geometry.ETL_mock_base.fid_tr: {27.25,-20.55,0}
-geometry.ETL_mock_base.fid_tl: {-27.25,-20.55,0}
-geometry.ETL_mock_base.fid_bl: {-27.25,20.55,0}
-geometry.ETL_mock_base.fid_br: {27.25,20.55,0}
+geometry.ETL_ETROC_PCB_Mockup_0.fid_tr: {-9.0,-9.5,0}
+geometry.ETL_ETROC_PCB_Mockup_0.fid_tl: {-9.0,9.5,0}
+geometry.ETL_ETROC_PCB_Mockup_0.fid_bl: {10.5,9.5,0}
+geometry.ETL_ETROC_PCB_Mockup_0.fid_br: {10.5,-9.5,0}
 
-#Baseplate fiducials
-#bottom #completed for pos 1
-default.ETL_mock_base.2.1.pos: {26.368250,206.502250,87.458450}
-default.ETL_mock_base.2.1.rot: {-0.000224,-0.000767,0.705824,-0.708387}
+geometry.ETL_ETROC_PCB_Mockup_1.fid_tr: {9.0,9.5,0}
+geometry.ETL_ETROC_PCB_Mockup_1.fid_tl: {9.0,-9.5,0}
+geometry.ETL_ETROC_PCB_Mockup_1.fid_bl: {-10.5,-9.5,0}
+geometry.ETL_ETROC_PCB_Mockup_1.fid_br: {-10.5,9.5,0}
 
-# Next 3 positions still need to be updated.
-default.ETL_mock_base.2.2.pos: {779.829269,422.009143,63.070000}
-default.ETL_mock_base.2.2.rot: {-0.000790,0.000552,-0.001191,0.999999}
+geometry.ETL_mock_base.fid_tr: {26.75,-19.55,0}
+geometry.ETL_mock_base.fid_tl: {-26.75,-19.55,0}
+geometry.ETL_mock_base.fid_bl: {-26.75,19.55,0}
+geometry.ETL_mock_base.fid_br: {26.75,19.55,0}
 
-default.ETL_mock_base.2.3.pos: {779.746585,371.220502,63.076252}
-default.ETL_mock_base.2.3.rot: {-0.000091,0.000390,-0.000871,1.000000}
+# Baseplate fiducials #
+#Chuck 2
+default.ETL_mock_base.2.1.pos: {206.097500,27.327250,88.789000}
+default.ETL_mock_base.2.1.rot: {0.000414,-0.001380,0.001859,-0.999997}
 
-default.ETL_mock_base.2.4.pos: {779.659403,320.324821,63.043748}
-default.ETL_mock_base.2.4.rot: {-0.000760,-0.000159,-0.002072,0.999998}
+default.ETL_mock_base.2.2.pos: {206.254750,78.119000,88.854000}
+default.ETL_mock_base.2.2.rot: {-0.000224,-0.000257,0.001668,-0.999999}
+
+default.ETL_mock_base.2.3.pos: {206.400750,128.918500,88.810250}
+default.ETL_mock_base.2.3.rot: {-0.001278,0.000657,-0.001469,0.999998}
+
+default.ETL_mock_base.2.4.pos: {206.531250,179.721250,88.870250}
+default.ETL_mock_base.2.4.rot: {-0.000001,-0.000795,0.002236,-0.999997}
+
+#Chuck 3
+default.ETL_mock_base.3.1.pos: {356.048256,27.117657,87.256460}
+default.ETL_mock_base.3.1.rot: {0.999998,-0.001771,-0.000982,-0.000001}
+
+default.ETL_mock_base.3.2.pos: {356.205254,77.908658,87.307290}
+default.ETL_mock_base.3.2.rot: {0.999999,-0.001605,0.000141,-0.000511}
+
+default.ETL_mock_base.3.3.pos: {356.341003,128.699858,87.259137}
+default.ETL_mock_base.3.3.rot: {0.999998,-0.001405,-0.000260,0.001630}
+
+default.ETL_mock_base.3.4.pos: {356.467008,179.509761,87.322056}
+default.ETL_mock_base.3.4.rot: {0.999997,-0.002174,-0.000538,0.000095}
+
+#Chuck 4
+default.ETL_mock_base.4.1.pos: {355.766753,326.971913,88.866722}
+default.ETL_mock_base.4.1.rot: {0.999999,0.001058,-0.000981,0.000193}
+
+default.ETL_mock_base.4.2.pos: {355.630252,377.756970,88.901465}
+default.ETL_mock_base.4.2.rot: {0.999999,0.001186,0.000023,-0.000352}
+
+default.ETL_mock_base.4.3.pos: {355.480253,428.550207,88.839457}
+default.ETL_mock_base.4.3.rot: {0.999998,0.001363,-0.000302,0.001439}
+
+default.ETL_mock_base.4.4.pos: {355.322251,479.361642,88.884736}
+default.ETL_mock_base.4.4.rot: {1.000000,0.000572,-0.000491,0.000096}
 
 
 #top (#updated)
 #ETROC fiducials
-default.ETL_Sensor_PCB_Mockup.1.5.pos: {38.373106,398.634893,101.992150}
-default.ETL_Sensor_PCB_Mockup.1.5.rot: {0.000000,0.000000,0.704915,-0.709292}
 
-default.ETL_Sensor_PCB_Mockup.1.6.pos: {95.652971,398.726414,101.800000}
-default.ETL_Sensor_PCB_Mockup.1.6.rot: {0.000000,0.000000,0.707325,0.706888}
+default.ETL_ETROC_PCB_Mockup.1.1.pos: {37.501251,364.198197,101.992153}
+default.ETL_ETROC_PCB_Mockup.1.1.rot: {0.000263,0.000769,-0.000465,1.000000}
 
-default.ETL_Sensor_PCB_Mockup.1.9.pos: {38.238991,423.349879,101.971382}
-default.ETL_Sensor_PCB_Mockup.1.9.rot: {-0.002753,0.000194,0.706341,-0.707866}
+default.ETL_ETROC_PCB_Mockup.1.2.pos: {94.828500,364.070490,101.959654}
+default.ETL_ETROC_PCB_Mockup.1.2.rot: {-0.000066,0.000064,-0.000340,1.000000}
 
-default.ETL_Sensor_PCB_Mockup.1.10.pos: {95.606410,423.480580,101.559804}
-default.ETL_Sensor_PCB_Mockup.1.10.rot: {-0.004675,-0.007171,0.707836,0.706325}
+default.ETL_ETROC_PCB_Mockup.1.3.pos: {152.129252,363.906777,101.931398}
+default.ETL_ETROC_PCB_Mockup.1.3.rot: {-0.000264,0.000258,-0.001018,0.999999}
+
+default.ETL_ETROC_PCB_Mockup.1.4.pos: {209.470249,363.804901,101.928679}
+default.ETL_ETROC_PCB_Mockup.1.4.rot: {-0.000132,0.000128,0.000900,-1.000000}
+
+default.ETL_ETROC_PCB_Mockup.1.5.pos: {37.611752,398.213780,102.007153}
+default.ETL_ETROC_PCB_Mockup.1.5.rot: {-0.000263,0.000769,-0.000853,0.999999}
+
+default.ETL_ETROC_PCB_Mockup.1.6.pos: {94.904750,398.056350,101.940590}
+default.ETL_ETROC_PCB_Mockup.1.6.rot: {-0.000263,0.000257,-0.000100,1.000000}
+
+default.ETL_ETROC_PCB_Mockup.1.7.pos: {152.247000,397.917562,101.932141}
+default.ETL_ETROC_PCB_Mockup.1.7.rot: {0.000198,0.000065,0.000541,-1.000000}
+
+default.ETL_ETROC_PCB_Mockup.1.8.pos: {209.549750,397.817309,101.923694}
+default.ETL_ETROC_PCB_Mockup.1.8.rot: {-0.000131,-0.000129,0.000372,1.000000}
+
+default.ETL_ETROC_PCB_Mockup.1.9.pos: {37.616251,422.939717,101.998307}
+default.ETL_ETROC_PCB_Mockup.1.9.rot: {-0.000330,0.000705,0.000022,1.000000}
+
+default.ETL_ETROC_PCB_Mockup.1.10.pos: {94.985249,422.798383,101.927912}
+default.ETL_ETROC_PCB_Mockup.1.10.rot: {-0.000132,0.000384,-0.000912,1.000000}
+
+default.ETL_ETROC_PCB_Mockup.1.11.pos: {152.301250,422.642967,101.915987}
+default.ETL_ETROC_PCB_Mockup.1.11.rot: {-0.000001,-0.000001,-0.000145,1.000000}
+
+default.ETL_ETROC_PCB_Mockup.1.12.pos: {209.650500,422.526612,101.903499}
+default.ETL_ETROC_PCB_Mockup.1.12.rot: {-0.000658,0.000000,0.000075,1.000000}
+
+default.ETL_ETROC_PCB_Mockup.1.13.pos: {37.694751,456.899059,101.951011}
+default.ETL_ETROC_PCB_Mockup.1.13.rot: {-0.000725,0.000833,-0.000372,0.999999}
+
+default.ETL_ETROC_PCB_Mockup.1.14.pos: {95.014500,456.808788,101.896396}
+default.ETL_ETROC_PCB_Mockup.1.14.rot: {-0.000264,0.000256,0.000308,-1.000000}
+
+default.ETL_ETROC_PCB_Mockup.1.15.pos: {152.294500,456.570132,101.863501}
+default.ETL_ETROC_PCB_Mockup.1.15.rot: {-0.000395,0.000001,-0.000421,1.000000}
+
+default.ETL_ETROC_PCB_Mockup.1.16.pos: {209.648250,456.531656,101.843308}
+default.ETL_ETROC_PCB_Mockup.1.16.rot: {-0.000263,0.000128,-0.000229,1.000000}

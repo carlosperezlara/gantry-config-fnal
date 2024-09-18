@@ -19,9 +19,9 @@
 ' 4th position on axis selector switch.
 #DEFINE U U	
 ' The A axis moves when the switch on the MPG is set to 5th axis V.
-#DEFINE V A	
+#DEFINE V U	
 ' The B axis moves when the switch on the MPG is set to 6th axis B.
-#DEFINE W B		
+#DEFINE W U		
 
 ' Define the distance for one tick (or change) of the MPG handWheel.
 ' The distance is in primary units which defaults to mm.
