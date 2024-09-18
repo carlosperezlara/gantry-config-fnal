@@ -1,9 +1,7 @@
 # Load this file with the line:
 #
-# LOADCONFIG "" Config\ETL\Throughput_Assy_Configuration.txt
+# LOADCONFIG "" Config\TP_Site_Config.txt
 #
-# This file has the site-specific configuration data for the scripts in
-# ETLModules/Throughput
 
 #chuck numbers
 # Bottom is the chuck that holds the assembly plate
