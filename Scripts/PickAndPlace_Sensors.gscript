@@ -131,9 +131,9 @@ END
     ADD $etroc_init_rot $etroc_init_rot 90
     ADD $pcb_rot $pcb_rot 90
     @PCB_ROT_NO_CHANGE
-    MOVENAME etl_chuck_{$etroc_chuck_num} "" direct  ## move to CHUCK
+    #MOVENAME etl_chuck_{$etroc_chuck_num} "" direct  ## move to CHUCK
     PICKPART $etroc_init_pos $etroc_init_rot etl_chuck_{$etroc_chuck_num}_pos_{$etroc_init_pos_num}  ## pick ETROC_INIT_POS ETL_CHUCK_[CHUCK]_POS_[ETROC]
-    MOVENAME etl_chuck_{$pcb_chuck_num} "" direct    ## move to PCB CHUCK
+    #MOVENAME etl_chuck_{$pcb_chuck_num} "" direct    ## move to PCB CHUCK
     PLACEPART $etroc_target_pos $pcb_rot             ## place ETROC_TARGET_POS with rotation
     RETURN
 
@@ -227,9 +227,9 @@ END
     MOVETO $start_pos 100
 
     # GOTO @manual_fiducial_acquisition
-    COPY &vision.autofocus.step_size 0.1
+    COPY &vision.autofocus.step_size 0.2
     SETLIGHT $low_int
-    AUTOFOCUS $_ 1 "" autoclose
+    AUTOFOCUS $_ 1.2 "" autoclose
     SETLIGHT $high_int
 
     SETERRORMODE setvar
