@@ -5,3 +5,4 @@ Logs/
 # Exclude compile Aerotech scripts
 *.OGM
 .DS_Store
+/Scripts/ignore
