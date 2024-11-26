@@ -1,6 +1,6 @@
 # Load this file with the line:
 #
-# LOADCONFIG "" Config\TP_Site_Config_ThermalOct24.txt
+# LOADCONFIG "" Config\TP_Site_Config.txt
 #
 
 #chuck numbers
@@ -16,7 +16,7 @@ default.light_low_int: 20 #35 for pcb dummies
 default.light_high_int: 60
 
 # Chuck 1
-default.Module_PCB.1.1.pos: {68.750936,157.408390,30.165510} #29.63551 #{68.750936,157.408390,30.665510} #Z modified for Thermal PCB
+default.Module_PCB.1.1.pos: {68.750936,157.408390,30.665510}
 default.Module_PCB.1.1.rot: {-0.000490,0.000382,-0.706188,0.708024}
 
 default.Module_PCB.1.2.pos: {68.710940,208.194386,30.653510}
@@ -109,7 +109,7 @@ default.LGAD.4.16.rot: {0,0,0,0}
 #might have put in wrong angle? if so flip signs for all the 16 ones, otherwise im confident
 
 #top AlN positions #all of these are probably wrong??
-default.BP.4.5.pos: {66.539359,549.983394,44.294442} #{66.539359,549.983394,44.404442} # Modified for Thermal BP
+default.BP.4.5.pos: {66.539359,549.983394,44.404442}
 default.BP.4.5.rot: {-0.001075,0.000457,0.000665,0.999999}
 
 default.BP.4.6.pos: {120.523959,550.118486,44.359733}

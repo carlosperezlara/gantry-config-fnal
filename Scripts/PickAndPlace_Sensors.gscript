@@ -16,6 +16,20 @@ DIALOG Scripts\PickAndPlace_Sensors_Dialog1.ini
 
 COPY $etroc_chuck_num &chuck_number.top
 
+#COPY $PCBTHICKNESS 0.5 ### thickness of mockup v1
+COPY $PCBTHICKNESS 1.0 ### thickness of Thermal Mockup v4
+COPY $PCB_FIDMANUAL 0
+
+COPY $ETROCTHICKNESS 0.55 ### thickness of mockup v1
+#COPY $ETROCTHICKNESS 0.75 ### thickness of Thermal Mockup v4
+COPY $ETROC_FIDMANUAL 1
+
+COPY $LGAD_FIDMANUAL 0
+
+#COPY $FILMTHICKNESS 0.8 ### thickness of Film
+COPY $FILMTHICKNESS 0.0 ### thickness of Film
+
+
 HOME if-needed
 
 PRINT "Assembly Start"
@@ -121,7 +135,7 @@ END
     #Puts relative alignment of subassemblies in gantry coordinates using Module PCB position
     COPY $pcb_pos &pcb_init_pos_{$pcb_pos_num}                                    ## retrieve PCB_INIT_POS_[MOD]
     COPY $pcb_rot &pcb_init_rot_{$pcb_pos_num}                                    ## retrieve PCB_INIT_ROT_[MOD]
-    COPY $etroc_target_pos &etroc_target_pos_{$pcb_pos_num}_{$etroc_pos_num}      ## retrieve ETROC_TARGET_[CHUCK]_[MODULE]
+    COPY $tetroc_target_pos &etroc_target_pos_{$pcb_pos_num}_{$etroc_pos_num}      ## retrieve ETROC_TARGET_[CHUCK]_[MODULE]
     COPY $etroc_init_pos_num &etroc_init_pos_num_{$pcb_pos_num}_{$etroc_pos_num}  ## retrieve ETROC_INIT_POS_NUM
     COPY $etroc_init_pos &etroc_init_pos_{$etroc_init_pos_num}                    ## retrieve ETROC_INIT_POS
     COPY $etroc_init_rot &etroc_init_rot_{$etroc_init_pos_num}                    ## retrieve ETROC_INIT_ROT
@@ -134,6 +148,10 @@ END
     #MOVENAME etl_chuck_{$etroc_chuck_num} "" direct  ## move to CHUCK
     PICKPART $etroc_init_pos $etroc_init_rot etl_chuck_{$etroc_chuck_num}_pos_{$etroc_init_pos_num}  ## pick ETROC_INIT_POS ETL_CHUCK_[CHUCK]_POS_[ETROC]
     #MOVENAME etl_chuck_{$pcb_chuck_num} "" direct    ## move to PCB CHUCK
+
+    # Accounting for film thickness
+    SUB $etroc_target_pos $tetroc_target_pos {0,0,$FILMTHICKNESS}
+
     PLACEPART $etroc_target_pos $pcb_rot             ## place ETROC_TARGET_POS with rotation
     RETURN
 
@@ -152,13 +170,14 @@ END
 #            $pos_num
 # Returns:   $pos - center
 #            $rot - rotation in x-y plane
-    COPY $pos_default &default.Module_PCB.{$chuck_num}.{$pos_num}.pos
+    COPY $tpos_default &default.Module_PCB.{$chuck_num}.{$pos_num}.pos
+    SUB $pos_default $tpos_default {0,0,$PCBTHICKNESS}
     COPY $rot_default &default.Module_PCB.{$chuck_num}.{$pos_num}.rot
     COPY $tr_local &geometry.Module_PCB.fid_tr
     COPY $tl_local &geometry.Module_PCB.fid_tl
     COPY $bl_local &geometry.Module_PCB.fid_bl
     COPY $br_local &geometry.Module_PCB.fid_br
-    CALL @L2G_ACQUIREFIDUCIAL $pos_default $rot_default $tr_local $tl_local $bl_local $br_local -> $tr_corrected $tl_corrected $bl_corrected $br_corrected
+    CALL @L2G_ACQUIREFIDUCIAL $pos_default $rot_default $tr_local $tl_local $bl_local $br_local $PCB_FIDMANUAL -> $tr_corrected $tl_corrected $bl_corrected $br_corrected
     FIT $pos $rot $_ Module_PCB $tr_corrected $br_corrected $bl_corrected $tl_corrected
     QUAT2EULER $phi $_ $_ $rot
     RETURN $pos $phi
@@ -168,13 +187,14 @@ END
 #            $pos_num
 # Returns:   $pos - center
 #            $rot - rotation in x-y plane
-    COPY $pos_default &default.ETROC.{$chuck_num}.{$pos_num}.pos
+    COPY $tpos_default &default.ETROC.{$chuck_num}.{$pos_num}.pos
+    SUB $pos_default $tpos_default {0,0,$ETROCTHICKNESS}
     COPY $rot_default &default.ETROC.{$chuck_num}.{$pos_num}.rot
     COPY $tr_local &geometry.ETROC.fid_tr
     COPY $tl_local &geometry.ETROC.fid_tl
     COPY $bl_local &geometry.ETROC.fid_bl
     COPY $br_local &geometry.ETROC.fid_br
-    CALL @L2G_ACQUIREFIDUCIAL $pos_default $rot_default $tr_local $tl_local $bl_local $br_local -> $tr_corrected $tl_corrected $bl_corrected $br_corrected
+    CALL @L2G_ACQUIREFIDUCIAL $pos_default $rot_default $tr_local $tl_local $bl_local $br_local $ETROC_FIDMANUAL -> $tr_corrected $tl_corrected $bl_corrected $br_corrected
     FIT $pos $rot $_ ETROC $tr_corrected $br_corrected $bl_corrected $tl_corrected
     QUAT2EULER $phi $_ $_ $rot
     RETURN $pos $phi
@@ -188,12 +208,12 @@ END
     COPY $tl_local &geometry.LGAD.fid_tl
     COPY $bl_local &geometry.LGAD.fid_bl
     COPY $br_local &geometry.LGAD.fid_br
-    CALL @L2G_ACQUIREFIDUCIAL $pos_default $rot_default $tr_local $tl_local $bl_local $br_local -> $tr_corrected $tl_corrected $bl_corrected $br_corrected
+    CALL @L2G_ACQUIREFIDUCIAL $pos_default $rot_default $tr_local $tl_local $bl_local $br_local $LGAD_FIDMANUAL -> $tr_corrected $tl_corrected $bl_corrected $br_corrected
     FIT $pos $rot $_ LGAD $tr_corrected $br_corrected $bl_corrected $tl_corrected
     QUAT2EULER $phi $_ $_ $rot
     RETURN $pos $phi
 
-@L2G_ACQUIREFIDUCIAL(pos_default,rot_default,tr_local,tl_local,bl_local,br_local)
+@L2G_ACQUIREFIDUCIAL(pos_default,rot_default,tr_local,tl_local,bl_local,br_local,manual_acq)
     # Arguments:
     #  $pos - center
     #  $rot - center
@@ -201,6 +221,7 @@ END
     #  $topleft_pos
     #  $bottomleft_pos
     #  $bottomright_pos
+    #  $manual_acq
     # Returns
     #  $tr corrected
     #  $tl corrected
@@ -214,19 +235,20 @@ END
     TRANSFORML2G $br_global $br_local $pos_default $rot_default
 
     #this is to get corrected centers and orientation, the code above gives general area
-    CALL @ACQUIREFIDUCIAL $tr_global -> $tr_corrected
-    CALL @ACQUIREFIDUCIAL $br_global -> $br_corrected
-    CALL @ACQUIREFIDUCIAL $tl_global -> $tl_corrected
-    CALL @ACQUIREFIDUCIAL $bl_global -> $bl_corrected
+    CALL @ACQUIREFIDUCIAL $tr_global $manual_acq -> $tr_corrected
+    CALL @ACQUIREFIDUCIAL $br_global $manual_acq -> $br_corrected
+    CALL @ACQUIREFIDUCIAL $tl_global $manual_acq -> $tl_corrected
+    CALL @ACQUIREFIDUCIAL $bl_global $manual_acq -> $bl_corrected
 
     RETURN $tr_corrected $tl_corrected $bl_corrected $br_corrected
 
-@ACQUIREFIDUCIAL(start_pos)
+@ACQUIREFIDUCIAL(start_pos,manual_acq)
     # Arguments:
     #  $start_pos - Position to initially search for the fiducial
+    #  $manual_acq - Global Boolean for manual acquisition
     MOVETO $start_pos 100
 
-    # GOTO @manual_fiducial_acquisition
+    GOTOIF @manual_fiducial_acquisition $manual_acq
     COPY &vision.autofocus.step_size 0.2
     SETLIGHT $low_int
     AUTOFOCUS $_ 1.2 "" autoclose
