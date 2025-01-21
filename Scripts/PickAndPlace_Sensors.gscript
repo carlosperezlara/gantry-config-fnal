@@ -16,13 +16,13 @@ DIALOG Scripts\PickAndPlace_Sensors_Dialog1.ini
 
 COPY $etroc_chuck_num &chuck_number.top
 
-#COPY $PCBTHICKNESS 0.5 ### thickness of mockup v1
-COPY $PCBTHICKNESS 1.0 ### thickness of Thermal Mockup v4
+COPY $PCBTHICKNESS 0.5 ### thickness of mockup v1
+#COPY $PCBTHICKNESS 1.0 ### thickness of Thermal Mockup v4
 COPY $PCB_FIDMANUAL 0
 
 COPY $ETROCTHICKNESS 0.55 ### thickness of mockup v1
 #COPY $ETROCTHICKNESS 0.75 ### thickness of Thermal Mockup v4
-COPY $ETROC_FIDMANUAL 1
+COPY $ETROC_FIDMANUAL 0
 
 COPY $LGAD_FIDMANUAL 0
 
